@@ -1,3 +1,8 @@
 import { config } from '@websites/eslint-config/reactjs';
 
-export default config;
+export default [
+  ...config,
+  {
+    ignores: ['.sanity/**']
+  }
+];
