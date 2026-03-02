@@ -8,12 +8,6 @@
       "inputs": ["$TURBO_DEFAULT$"],
       "outputs": ["dist/**", "build/**", "out/**", ".next/**", "!.next/cache/**"]
     },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
-    "check-types": {
-      "dependsOn": ["^check-types"]
-    },
     "dev": {
       "cache": false,
       "persistent": true
@@ -21,6 +15,12 @@
     "start": {
       "cache": false,
       "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"]
     }
   }
 }
