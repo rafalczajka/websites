@@ -30,6 +30,14 @@ runs:
       shell: bash
       run: corepack prepare pnpm@${{ inputs.pnpm-version }} --activate
 
+    - name: Configure pnpm global bin directory
+      shell: bash
+      run: |
+        echo "PNPM_HOME=$HOME/.pnpm" >> "$GITHUB_ENV"
+        echo "$HOME/.pnpm" >> "$GITHUB_PATH"
+        mkdir -p "$HOME/.pnpm"
+        pnpm config set global-bin-dir "$HOME/.pnpm"
+
     - name: Get pnpm store path
       shell: bash
       run: echo "PNPM_STORE_PATH=$(pnpm store path --silent)" >> "$GITHUB_ENV"
