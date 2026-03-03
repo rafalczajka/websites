@@ -1,0 +1,59 @@
+name: Deploy Studio Blog
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - apps/studio-blog/**
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: studio-blog-vercel
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: studio-blog-vercel
+
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js + pnpm
+        uses: ./.github/actions/setup-node-pnpm
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint --filter studio-blog
+
+      - name: Typecheck
+        run: pnpm check-types --filter studio-blog
+
+      - name: Install Vercel CLI
+        run: pnpm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        working-directory: apps/studio-blog
+        run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Build Project Artifacts
+        working-directory: apps/studio-blog
+        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Deploy Project Artifacts to Vercel
+        working-directory: apps/studio-blog
+        run: vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}"
