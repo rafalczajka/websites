@@ -1,4 +1,4 @@
-import { ArrowUpRightIcon, Menu, Rss, X } from 'lucide-react';
+import { ArrowUpRightIcon, Menu, X } from 'lucide-react';
 
 import type { PostCategory } from '@/domain/posts/models';
 import { SearchDialog } from '@/domain/search/ui';
@@ -16,18 +16,18 @@ import {
 } from '@/ui/sheet';
 import { cn } from '@/utils/cn';
 
-import { HeaderSeparator, Logo, Nav, SearchButton } from './internal';
+import { Logo, Nav, SearchButton } from './internal';
 
 type SiteHeaderProps = {
   categories: PostCategory[];
   className?: string;
 };
 
-const rssButton = (
-  <Button variant="ghost" size="icon" aria-label="RSS feed unavailable" disabled>
-    <Rss className="size-4" />
-  </Button>
-);
+// const rssButton = (
+//   <Button variant="ghost" size="icon" aria-label="RSS feed unavailable" disabled>
+//     <Rss className="size-4" />
+//   </Button>
+// );
 
 const externalHomeLink = (
   <Button variant="outline" className="text-sm" asChild>
@@ -45,8 +45,8 @@ export function Header({ categories, className }: SiteHeaderProps) {
       <div className="flex items-center gap-3">
         <SearchButton />
         <ThemeToggle />
-        <HeaderSeparator />
-        {rssButton}
+        {/* <HeaderSeparator /> */}
+        {/* {rssButton} */}
         <Sheet>
           <SheetTrigger asChild>
             <Button
@@ -100,8 +100,8 @@ export function Header({ categories, className }: SiteHeaderProps) {
       <div className="flex items-center gap-3">
         <SearchButton />
         <ThemeToggle />
-        <HeaderSeparator />
-        {rssButton}
+        {/* <HeaderSeparator /> */}
+        {/* {rssButton} */}
         {externalHomeLink}
       </div>
     </div>
