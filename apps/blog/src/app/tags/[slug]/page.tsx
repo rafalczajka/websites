@@ -24,7 +24,10 @@ export async function generateMetadata({
 
   return {
     title: `#${pageData.tag}`,
-    description: `Articles tagged with ${pageData.tag}.`
+    description: `Articles tagged with ${pageData.tag}.`,
+    alternates: {
+      canonical: `/tags/${slug}`
+    }
   };
 }
 

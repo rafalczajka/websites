@@ -24,8 +24,10 @@ const geistMono = Geist_Mono({
 const BLOG_TITLE = 'Blog';
 const BLOG_DESCRIPTION =
   "A personal blog about programming, AI, physics, and other things I'm learning and exploring.";
+const BLOG_URL = 'https://blog.rczajka.me';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BLOG_URL),
   title: {
     default: BLOG_TITLE,
     template: `%s | ${BLOG_TITLE}`

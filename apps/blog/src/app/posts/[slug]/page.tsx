@@ -27,7 +27,10 @@ export async function generateMetadata({
 
   return {
     title: post.title ?? 'Untitled',
-    description: post.excerpt?.replace(/\s+/g, ' ').trim()
+    description: post.excerpt?.replace(/\s+/g, ' ').trim(),
+    alternates: {
+      canonical: `/posts/${slug}`
+    }
   };
 }
 

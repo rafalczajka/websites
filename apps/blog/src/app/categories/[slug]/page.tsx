@@ -26,7 +26,10 @@ export async function generateMetadata({
     title: pageData.categoryTitle,
     description:
       pageData.categoryDescription?.replace(/\s+/g, ' ').trim() ||
-      `Articles in ${pageData.categoryTitle}.`
+      `Articles in ${pageData.categoryTitle}.`,
+    alternates: {
+      canonical: `/categories/${slug}`
+    }
   };
 }
 

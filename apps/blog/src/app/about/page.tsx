@@ -11,7 +11,10 @@ export function generateMetadata(): Metadata {
 
   return {
     title: 'About',
-    description
+    description,
+    alternates: {
+      canonical: '/about'
+    }
   };
 }
 
