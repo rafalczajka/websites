@@ -16,9 +16,9 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-simple-import-sort": "12.1.1",
-    "eslint-plugin-turbo": "2.8.12",
+    "eslint-plugin-turbo": "2.8.17",
     "globals": "17.4.0",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.56.1"
+    "typescript-eslint": "8.57.0"
   }
 }
