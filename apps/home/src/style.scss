@@ -125,9 +125,16 @@ h3 {
   }
 
   &::after {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    min-width: 1rem;
     margin-left: auto;
     font-size: 1.2em;
+    line-height: 1;
+    text-align: center;
+    flex-shrink: 0;
   }
 
   &--external::after {
