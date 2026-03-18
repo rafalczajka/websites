@@ -16,8 +16,8 @@ type LogoProps = {
 export const Logo = ({ className }: LogoProps) => (
   <NavButton variant="ghost" asChild>
     <Link href="/" aria-label="Blog home" className={cn('text-sm', className)}>
-      <House className="size-4" />
-      <span className="sm:hidden">Blog</span>
+      <House className="sm:hidden size-4" />
+      <span>Home</span>
     </Link>
   </NavButton>
 );
