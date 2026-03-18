@@ -1,4 +1,4 @@
-import { ArrowUpRightIcon, Menu, X } from 'lucide-react';
+import { ArrowRightIcon, Menu, X } from 'lucide-react';
 
 import type { PostCategory } from '@/domain/posts/models';
 import { SearchDialog } from '@/domain/search/ui';
@@ -29,11 +29,11 @@ type SiteHeaderProps = {
 //   </Button>
 // );
 
-const externalHomeLink = (
+const homeLink = (
   <Button variant="outline" className="text-sm" asChild>
-    <a href="https://rczajka.me" target="_blank" rel="noreferrer noopener">
+    <a href="https://rczajka.me">
       rczajka.me
-      <ArrowUpRightIcon className="size-4" />
+      <ArrowRightIcon className="size-4" />
     </a>
   </Button>
 );
@@ -78,9 +78,9 @@ export function Header({ categories, className }: SiteHeaderProps) {
               <Separator />
               <SheetClose asChild>
                 <Button variant="outline" size="lg" className="w-full justify-between" asChild>
-                  <a href="https://rczajka.me" target="_blank" rel="noreferrer noopener">
+                  <a href="https://rczajka.me">
                     <span>rczajka.me</span>
-                    <ArrowUpRightIcon className="size-4" />
+                    <ArrowRightIcon className="size-4" />
                   </a>
                 </Button>
               </SheetClose>
@@ -102,7 +102,7 @@ export function Header({ categories, className }: SiteHeaderProps) {
         <ThemeToggle />
         {/* <HeaderSeparator /> */}
         {/* {rssButton} */}
-        {externalHomeLink}
+        {homeLink}
       </div>
     </div>
   );
