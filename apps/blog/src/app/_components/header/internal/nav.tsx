@@ -25,19 +25,11 @@ type NavProps = {
 
 export function Nav({ categories, variant = 'inline', className }: NavProps) {
   if (variant === 'menu') {
+    if (categories.length === 0) return null;
+
     return (
       <nav className={className} aria-label="Navigation">
         <ul className="space-y-2">
-          <li>
-            <SheetClose asChild>
-              <Button variant="outline" size="lg" className="w-full justify-between" asChild>
-                <Link href="/about">
-                  About
-                  <ArrowRightIcon className="size-4" />
-                </Link>
-              </Button>
-            </SheetClose>
-          </li>
           {categories.map((category) => (
             <li key={category.id}>
               <SheetClose asChild>
@@ -54,6 +46,8 @@ export function Nav({ categories, variant = 'inline', className }: NavProps) {
       </nav>
     );
   }
+
+  if (categories.length === 0) return null;
 
   const navigationMenu = (
     <NavigationMenuItem className="md:hidden">
@@ -98,13 +92,6 @@ export function Nav({ categories, variant = 'inline', className }: NavProps) {
   return (
     <NavigationMenu>
       <NavigationMenuList className="justify-start">
-        <NavigationMenuItem>
-          <NavButton variant="ghost" asChild>
-            <Link href="/about" className="text-sm font-medium">
-              About
-            </Link>
-          </NavButton>
-        </NavigationMenuItem>
         {navigationMenu}
         {navigation}
       </NavigationMenuList>

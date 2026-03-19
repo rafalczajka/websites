@@ -48,7 +48,9 @@ export function PostHeader({
         {title ?? 'Untitled'}
       </Heading>
       {excerpt && (
-        <p className={cn('leading-relaxed', isSimplified ? 'line-clamp-3 text-base' : 'sm:text-lg')}>
+        <p
+          className={cn('leading-relaxed', isSimplified ? 'line-clamp-3 text-base' : 'sm:text-lg')}
+        >
           {excerpt}
         </p>
       )}

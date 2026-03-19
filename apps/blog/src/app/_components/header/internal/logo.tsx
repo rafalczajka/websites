@@ -17,7 +17,7 @@ export const Logo = ({ className }: LogoProps) => (
   <NavButton variant="ghost" asChild>
     <Link href="/" aria-label="Blog home" className={cn('text-sm', className)}>
       <House className="sm:hidden size-4" />
-      <span>Home</span>
+      <span>Blog</span>
     </Link>
   </NavButton>
 );
