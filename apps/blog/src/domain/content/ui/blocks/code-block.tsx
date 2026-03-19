@@ -15,10 +15,7 @@ type CodeBlockContentProps = {
 
 const CodeBlockContent = ({ code, className }: CodeBlockContentProps) => (
   <div
-    className={cn(
-      '[&>pre]:overflow-x-auto [&>pre]:p-4 [&>pre]:text-sm [&>pre]:bg-card!',
-      className
-    )}
+    className={cn('[&>pre]:overflow-x-auto [&>pre]:p-4 [&>pre]:text-sm', className)}
     dangerouslySetInnerHTML={{ __html: code }}
   />
 );
