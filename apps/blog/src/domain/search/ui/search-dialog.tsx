@@ -19,12 +19,7 @@ type SearchDialogProps = {
   onQueryChange: (query: string) => void;
 };
 
-export function SearchDialog({
-  open,
-  onOpenChange,
-  query,
-  onQueryChange
-}: SearchDialogProps) {
+export function SearchDialog({ open, onOpenChange, query, onQueryChange }: SearchDialogProps) {
   const { results, isLoading, error } = useSearchResults(query, open);
 
   const renderCommandGroup = () => {
