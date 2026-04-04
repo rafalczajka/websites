@@ -1,7 +1,7 @@
 import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
 
-import { PostCategory } from '@/domain/posts/models';
+import type { PostCategory } from '@/domain/posts/models';
 import { Button } from '@/ui/button';
 import {
   NavigationMenu,
@@ -9,93 +9,101 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport
+  NavigationMenuTrigger
 } from '@/ui/navigation-menu';
+import { Separator } from '@/ui/separator';
 import { SheetClose } from '@/ui/sheet';
+import { cn } from '@/utils/cn';
 
-import { HeaderSeparator } from './header-separator';
-import { NavButton } from './nav-button';
-
-type NavProps = {
+type DesktopNavProps = {
   categories: PostCategory[];
-  variant?: 'menu' | 'inline';
   className?: string;
 };
 
-export function Nav({ categories, variant = 'inline', className }: NavProps) {
-  if (variant === 'menu') {
-    if (categories.length === 0) return null;
-
-    return (
-      <nav className={className} aria-label="Navigation">
-        <ul className="space-y-2">
-          {categories.map((category) => (
-            <li key={category.id}>
-              <SheetClose asChild>
-                <Button variant="outline" size="lg" className="w-full justify-between" asChild>
-                  <Link href={`/categories/${category.slug}`}>
-                    {category.title}
-                    <ArrowRightIcon className="size-4" />
-                  </Link>
-                </Button>
-              </SheetClose>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    );
-  }
-
+export function DesktopNav({ categories, className }: DesktopNavProps) {
   if (categories.length === 0) return null;
 
-  const navigationMenu = (
-    <NavigationMenuItem className="md:hidden">
-      <NavButton variant="ghost" asChild>
-        <NavigationMenuTrigger className="text-sm font-medium">Categories</NavigationMenuTrigger>
-      </NavButton>
-      <NavigationMenuContent>
-        <ul className="flex flex-col min-w-48 gap-1 py-1">
-          {categories.map((category) => (
-            <li key={category.id}>
-              <NavigationMenuLink asChild>
-                <Link
-                  href={`/categories/${category.slug}`}
-                  className="rounded-sm border border-transparent px-2.5 py-2 text-sm hover:border-border/70"
-                >
-                  {category.title}
-                </Link>
-              </NavigationMenuLink>
-            </li>
-          ))}
-        </ul>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
+  return (
+    <nav className={cn('flex items-center', className)} aria-label="Categories">
+      <CompactDesktopNav categories={categories} />
+      <InlineDesktopNav categories={categories} />
+    </nav>
   );
+}
 
-  const navigation = (
-    <>
-      <HeaderSeparator className="mx-1 hidden md:block" />
-      {categories.length > 0 &&
-        categories.map((category) => (
-          <NavigationMenuItem key={category.id} className="hidden md:flex">
-            <NavButton variant="ghost" asChild>
-              <Link href={`/categories/${category.slug}`} className="text-sm font-medium">
-                {category.title}
-              </Link>
-            </NavButton>
-          </NavigationMenuItem>
-        ))}
-    </>
-  );
+type MobileNavProps = {
+  categories: PostCategory[];
+  className?: string;
+};
+
+export function MobileNav({ categories, className }: MobileNavProps) {
+  if (categories.length === 0) return null;
 
   return (
-    <NavigationMenu>
+    <nav className={className} aria-label="Categories">
+      <ul className="space-y-2">
+        {categories.map((category) => (
+          <li key={category.id}>
+            <SheetClose asChild>
+              <Button variant="outline" size="lg" className="w-full justify-between" asChild>
+                <Link href={`/categories/${category.slug}`}>
+                  {category.title}
+                  <ArrowRightIcon className="size-4" />
+                </Link>
+              </Button>
+            </SheetClose>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
+type CategoryNavProps = {
+  categories: PostCategory[];
+};
+
+function CompactDesktopNav({ categories }: CategoryNavProps) {
+  return (
+    <NavigationMenu className="md:hidden">
       <NavigationMenuList className="justify-start">
-        {navigationMenu}
-        {navigation}
+        <NavigationMenuItem>
+          <Button variant="ghost" className="px-2.5" asChild>
+            <NavigationMenuTrigger className="text-sm font-medium">Categories</NavigationMenuTrigger>
+          </Button>
+          <NavigationMenuContent>
+            <ul className="min-w-48 flex flex-col gap-1 py-1">
+              {categories.map((category) => (
+                <li key={category.id}>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      href={`/categories/${category.slug}`}
+                      className="rounded-sm border border-transparent px-2.5 py-2 text-sm hover:border-border/70"
+                    >
+                      {category.title}
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
       </NavigationMenuList>
-      <NavigationMenuViewport />
     </NavigationMenu>
+  );
+}
+
+function InlineDesktopNav({ categories }: CategoryNavProps) {
+  return (
+    <div className="hidden items-center md:flex">
+      <Separator orientation="vertical" className="mx-1 my-2" />
+      {categories.map((category) => (
+        <Button key={category.id} variant="ghost" className="px-2.5" asChild>
+          <Link href={`/categories/${category.slug}`} className="text-sm font-medium">
+            {category.title}
+          </Link>
+        </Button>
+      ))}
+    </div>
   );
 }

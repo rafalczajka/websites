@@ -1,3 +1,5 @@
+'use client';
+
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { ChevronDownIcon } from 'lucide-react';
 import * as React from 'react';
