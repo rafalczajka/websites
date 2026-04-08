@@ -18,6 +18,3 @@ updates:
       js-dependencies:
         patterns:
           - '*'
-        update-types:
-          - 'minor'
-          - 'patch'
