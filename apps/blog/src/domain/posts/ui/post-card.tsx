@@ -9,6 +9,7 @@ import { PostImage } from './post-image';
 export type PostCardProps = Post & {
   updated?: string;
   readTime?: number;
+  preloadCoverImage?: boolean;
   className?: string;
 };
 
@@ -22,12 +23,13 @@ export function PostCard({
   readTime,
   coverUrl,
   coverAlt,
+  preloadCoverImage = false,
   className
 }: PostCardProps) {
   return (
     <article className={cn('rounded-md', className)}>
       <Link href={href} className="group block space-y-4 rounded-md sm:space-y-5">
-        <PostImage coverUrl={coverUrl} coverAlt={coverAlt ?? title} />
+        <PostImage coverUrl={coverUrl} coverAlt={coverAlt ?? title} preload={preloadCoverImage} />
         <PostHeader
           variant="simplified"
           headingLevel="h2"

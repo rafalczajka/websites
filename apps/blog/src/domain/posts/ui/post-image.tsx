@@ -36,6 +36,7 @@ export function PostImage({
           sizes={sizes}
           quality={85}
           preload={preload}
+          loading={preload ? 'eager' : 'lazy'}
           placeholder={coverImageLqip ? 'blur' : 'empty'}
           blurDataURL={coverImageLqip ?? undefined}
         />

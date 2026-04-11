@@ -10,8 +10,13 @@ type PostCardListProps = {
 export function PostCardList({ posts, className }: PostCardListProps) {
   return (
     <section className={cn('w-full space-y-16 sm:space-y-24', className)}>
-      {posts.map((post) => (
-        <PostCard key={post.href} {...post} className={cn('w-full', post.className)} />
+      {posts.map((post, index) => (
+        <PostCard
+          key={post.href}
+          preloadCoverImage={index === 0}
+          className={cn('w-full', post.className)}
+          {...post}
+        />
       ))}
     </section>
   );
