@@ -1,3 +1,4 @@
+import { Footer } from '@/app/(site)/_components';
 import { BackToTopButton } from '@/app/(site)/_components/actions';
 import { Header, HeaderVisibility } from '@/app/(site)/_components/header';
 import { getCategories } from '@/domain/posts/services';
@@ -24,10 +25,15 @@ export default async function SiteLayout({
   return (
     <>
       {skipToContentButton}
-      <HeaderVisibility>
-        <Header categories={categories} className={cn('py-3', pageContentClassNames)} />
-      </HeaderVisibility>
-      <div className={cn('pb-12 sm:pb-16', pageContentClassNames)}>{children}</div>
+      <div className="flex min-h-screen flex-col">
+        <HeaderVisibility>
+          <Header categories={categories} className={cn('py-3', pageContentClassNames)} />
+        </HeaderVisibility>
+        <div className={cn('flex flex-1 flex-col pb-6', pageContentClassNames)}>
+          {children}
+          <Footer className="mt-auto pt-16" />
+        </div>
+      </div>
       <BackToTopButton />
     </>
   );
