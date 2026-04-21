@@ -1,6 +1,8 @@
 'use client';
 
 import type { PostSearchDocument } from '@websites/search-blog';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 import { useSearchResults } from '@/domain/search/hooks';
 import {
@@ -35,7 +37,19 @@ export function SearchDialog({
   isLoading,
   error
 }: SearchDialogProps) {
+  const router = useRouter();
+  const [selectedValue, setSelectedValue] = useState('');
   const results = useSearchResults(query, documents, indexJson);
+
+  const handleOpenChange = (nextOpen: boolean) => {
+    setSelectedValue('');
+    onOpenChange(nextOpen);
+  };
+
+  const handleQueryChange = (nextQuery: string) => {
+    setSelectedValue('');
+    onQueryChange(nextQuery);
+  };
 
   const renderCommandGroup = () => {
     if (isLoading)
@@ -55,19 +69,20 @@ export function SearchDialog({
     if (results.length === 0) return <CommandEmpty>No posts found.</CommandEmpty>;
 
     return (
-      <CommandGroup className="space-y-2">
+      <CommandGroup className="space-y-2 p-2">
         {results.map((result) => (
           <CommandItem
             key={result.href}
-            value={`${result.title} ${result.excerpt ?? ''} ${result.category} ${result.tags.join(' ')}`}
-            className="p-0!"
+            value={result.href}
+            tabIndex={0}
+            className="cursor-pointer items-start gap-0 rounded-md p-0! focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+            onFocus={() => setSelectedValue(result.href)}
+            onSelect={(href) => {
+              handleOpenChange(false);
+              router.push(href);
+            }}
           >
-            <SearchResult
-              href={result.href}
-              title={result.title}
-              excerpt={result.excerpt}
-              onNavigate={() => onOpenChange(false)}
-            />
+            <SearchResult title={result.title} excerpt={result.excerpt} />
           </CommandItem>
         ))}
       </CommandGroup>
@@ -77,11 +92,16 @@ export function SearchDialog({
   return (
     <CommandDialog
       open={open}
-      onOpenChange={onOpenChange}
+      onOpenChange={handleOpenChange}
       title="Search posts"
       showCloseButton={false}
+      commandProps={{
+        shouldFilter: false,
+        value: selectedValue,
+        onValueChange: setSelectedValue
+      }}
     >
-      <CommandInput value={query} onValueChange={onQueryChange} placeholder="Search posts..." />
+      <CommandInput value={query} onValueChange={handleQueryChange} placeholder="Search posts..." />
       <CommandList>{renderCommandGroup()}</CommandList>
     </CommandDialog>
   );
