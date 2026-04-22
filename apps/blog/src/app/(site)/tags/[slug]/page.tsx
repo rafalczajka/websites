@@ -46,7 +46,7 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
   return (
     <PageContent
       className="space-y-10 sm:space-y-16"
-      aside={<TaxonomyAside title={`#${slug}`} count={posts.length} relatedTags={relatedTags} />}
+      aside={<TaxonomyAside title={`#${slug}`} relatedTags={relatedTags} />}
     >
       {posts.length > 0 && <PostCardList posts={posts} />}
     </PageContent>

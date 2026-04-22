@@ -57,11 +57,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     <PageContent
       className="space-y-12"
       aside={
-        <TaxonomyAside
-          title={pageData.categoryTitle}
-          count={pageData.posts.length}
-          description={pageData.categoryDescription}
-        />
+        <TaxonomyAside title={pageData.categoryTitle} description={pageData.categoryDescription} />
       }
     >
       {!!pageData.posts.length && <PostCardList posts={pageData.posts} />}
