@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
-import { PageContent } from '@/app/(site)/_components';
+import { PageContent, TaxonomyAside } from '@/app/(site)/_components';
 import { getPosts, getTagSlugs } from '@/domain/posts/services';
-import { PostCardList, Tags } from '@/domain/posts/ui';
+import { PostCardList } from '@/domain/posts/ui';
 
 export const dynamicParams = false;
 
@@ -35,7 +35,7 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
   const { slug } = await params;
   const [posts, tagParams] = await Promise.all([getCachedTaggedPosts(slug), getTagSlugs()]);
 
-  if (!posts.length) notFound();
+  if (posts.length < 1) notFound();
 
   const currentTagSlug = slug.toLowerCase();
   const relatedTags = tagParams
@@ -46,21 +46,9 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
   return (
     <PageContent
       className="space-y-10 sm:space-y-16"
-      aside={
-        <section className="space-y-5 rounded-md border border-border bg-card p-5 md:sticky md:top-20">
-          <div className="space-y-2">
-            <h1 className="text-2xl tracking-tight">#{slug}</h1>
-            <p className="text-sm text-muted-foreground">
-              {posts.length} {posts.length === 1 ? 'article' : 'articles'}
-            </p>
-          </div>
-          {!!relatedTags.length && (
-            <Tags tags={relatedTags} className="border-t border-border pt-4" />
-          )}
-        </section>
-      }
+      aside={<TaxonomyAside title={`#${slug}`} count={posts.length} relatedTags={relatedTags} />}
     >
-      {!!posts.length && <PostCardList posts={posts} />}
+      {posts.length > 0 && <PostCardList posts={posts} />}
     </PageContent>
   );
 }

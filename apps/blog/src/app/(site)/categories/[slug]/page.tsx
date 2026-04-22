@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
-import { PageContent } from '@/app/(site)/_components';
+import { PageContent, TaxonomyAside } from '@/app/(site)/_components';
 import { getCategorySlugs, getPosts } from '@/domain/posts/services';
 import { PostCardList } from '@/domain/posts/ui';
 
@@ -57,15 +57,11 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     <PageContent
       className="space-y-12"
       aside={
-        <section className="space-y-4 rounded-md border border-border bg-card p-5 md:sticky md:top-20">
-          <h1 className="text-2xl tracking-tight">{pageData.categoryTitle}</h1>
-          {!!pageData.categoryDescription && (
-            <p className="text-sm leading-relaxed">{pageData.categoryDescription}</p>
-          )}
-          <p className="text-sm text-muted-foreground">
-            {pageData.posts.length} {pageData.posts.length === 1 ? 'article' : 'articles'}
-          </p>
-        </section>
+        <TaxonomyAside
+          title={pageData.categoryTitle}
+          count={pageData.posts.length}
+          description={pageData.categoryDescription}
+        />
       }
     >
       {!!pageData.posts.length && <PostCardList posts={pageData.posts} />}
