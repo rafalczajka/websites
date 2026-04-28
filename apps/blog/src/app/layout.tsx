@@ -1,9 +1,9 @@
 import 'katex/dist/katex.min.css';
 import './globals.css';
 
-import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 
+import { rootMetadata } from '@/app/metadata';
 import { DEFAULT_THEME } from '@/domain/theme/config';
 import { themeInitScript } from '@/domain/theme/init-script';
 import { cn } from '@/utils/cn';
@@ -18,19 +18,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin']
 });
 
-const BLOG_TITLE = 'Blog';
-const BLOG_DESCRIPTION =
-  "A personal blog about programming, AI, physics, and other things I'm learning and exploring.";
-const BLOG_URL = 'https://blog.rczajka.me';
-
-export const metadata: Metadata = {
-  metadataBase: new URL(BLOG_URL),
-  title: {
-    default: BLOG_TITLE,
-    template: `%s | ${BLOG_TITLE}`
-  },
-  description: BLOG_DESCRIPTION
-};
+export const metadata = rootMetadata;
 
 export default async function RootLayout({
   children

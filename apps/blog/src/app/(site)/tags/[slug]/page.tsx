@@ -4,35 +4,33 @@ import { cache } from 'react';
 
 import { PageAside } from '@/app/(site)/_shared/aside';
 import { PageLayout } from '@/app/(site)/_shared/layout';
+import type { SlugPageProps } from '@/app/(site)/_shared/routing';
+import { createPageMetadata } from '@/app/metadata';
 import { PostCardList } from '@/domain/posts/components';
 import { getTagPageData, getTagSlugs } from '@/domain/posts/queries';
 
 export const dynamicParams = false;
 
-export const generateStaticParams = async () => getTagSlugs();
-
 const getCachedTagPageData = cache(getTagPageData);
 
-export async function generateMetadata({
-  params
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: SlugPageProps): Promise<Metadata> {
   const { slug } = await params;
   const pageData = await getCachedTagPageData(slug);
 
   if (!pageData) notFound();
 
-  return {
+  return createPageMetadata({
     title: pageData.title,
     description: `Articles tagged with ${slug}.`,
-    alternates: {
-      canonical: `/tags/${slug}`
-    }
-  };
+    canonical: `/tags/${slug}`
+  });
 }
 
-export default async function TagPage({ params }: { params: Promise<{ slug: string }> }) {
+export function generateStaticParams() {
+  return getTagSlugs();
+}
+
+export default async function TagPage({ params }: SlugPageProps) {
   const { slug } = await params;
   const pageData = await getCachedTagPageData(slug);
 

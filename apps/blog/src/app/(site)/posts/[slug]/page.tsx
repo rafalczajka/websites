@@ -3,82 +3,70 @@ import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
 import { PageLayout } from '@/app/(site)/_shared/layout';
+import type { SlugPageProps } from '@/app/(site)/_shared/routing';
+import { createPageMetadata } from '@/app/metadata';
 import { PortableTextRenderer } from '@/domain/content/portable-text';
 import { PostCoverImage, PostHeader, Tags } from '@/domain/posts/components';
+import type { PostDetails } from '@/domain/posts/models';
 import { getPostDetails, getPostSlugs } from '@/domain/posts/queries';
 import { formatDateLong } from '@/utils/dates';
 
 export const dynamicParams = false;
 
-export const generateStaticParams = () => getPostSlugs();
-
 const getCachedPostDetails = cache(getPostDetails);
 
-export async function generateMetadata({
-  params
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getCachedPostDetails(slug);
-
-  if (!post) notFound();
-
-  return {
-    title: post.title ?? 'Untitled',
-    description: post.excerpt?.replace(/\s+/g, ' ').trim(),
-    alternates: {
-      canonical: `/posts/${slug}`
-    }
-  };
+function getLastUpdatedLabel(post: PostDetails) {
+  const dateLabel = formatDateLong(post.publishedAt);
+  const updatedLabel = formatDateLong(post.updatedAt);
+  return updatedLabel && updatedLabel !== dateLabel ? updatedLabel : null;
 }
 
-export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: SlugPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getCachedPostDetails(slug);
 
   if (!post) notFound();
 
-  const {
-    headingIds,
-    bodyBlocks,
-    title,
-    excerpt,
-    category,
-    publishedAt,
-    updatedAt,
-    readTime,
-    tags,
-    coverUrl,
-    coverAlt,
-    coverImageLqip
-  } = post;
+  return createPageMetadata({
+    title: post.title ?? 'Untitled',
+    description: post.excerpt,
+    canonical: `/posts/${slug}`
+  });
+}
 
-  const dateLabel = formatDateLong(publishedAt);
-  const updatedLabel = formatDateLong(updatedAt);
-  const lastUpdatedLabel = updatedLabel && updatedLabel !== dateLabel ? updatedLabel : null;
+export async function generateStaticParams() {
+  return getPostSlugs();
+}
+
+export default async function PostPage({ params }: SlugPageProps) {
+  const { slug } = await params;
+  const post = await getCachedPostDetails(slug);
+
+  if (!post) notFound();
+
+  const lastUpdatedLabel = getLastUpdatedLabel(post);
 
   return (
     <PageLayout contentClassName="space-y-10 sm:space-y-14">
       <header className="space-y-6">
         <PostHeader
-          title={title}
-          excerpt={excerpt}
-          category={category}
-          date={dateLabel}
+          title={post.title}
+          excerpt={post.excerpt}
+          category={post.category}
+          date={formatDateLong(post.publishedAt)}
           updated={lastUpdatedLabel}
-          readTime={readTime}
+          readTime={post.readTime}
         />
         <PostCoverImage
-          coverUrl={coverUrl}
-          coverAlt={coverAlt}
-          coverImageLqip={coverImageLqip}
+          coverUrl={post.coverUrl}
+          coverAlt={post.coverAlt}
+          coverImageLqip={post.coverImageLqip}
           className="sm:w-[calc(100%+3rem)] sm:-mx-6"
         />
-        <Tags tags={tags} />
+        <Tags tags={post.tags} />
       </header>
       <article className="space-y-6">
-        <PortableTextRenderer value={bodyBlocks} headingIds={headingIds} />
+        <PortableTextRenderer value={post.bodyBlocks} headingIds={post.headingIds} />
       </article>
     </PageLayout>
   );

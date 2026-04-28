@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { PageLayout } from '@/app/(site)/_shared/layout';
+import { createPageMetadata } from '@/app/metadata';
 import { Button } from '@/ui/button';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'Page not found',
   description: 'The page you are looking for could not be found.'
-};
+});
 
 export default function NotFound() {
   return (
