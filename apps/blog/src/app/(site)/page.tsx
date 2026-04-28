@@ -9,6 +9,5 @@ export const metadata: Metadata = createPageMetadata({ canonical: '/' });
 
 export default async function Home() {
   const posts = await getPosts();
-
   return <PageLayout>{posts.length ? <PostCardList posts={posts} /> : <EmptyState />}</PageLayout>;
 }

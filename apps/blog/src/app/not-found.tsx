@@ -1,28 +1,29 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
-import { PageLayout } from '@/app/(site)/_shared/layout';
+import { NotFoundContent } from '@/app/(site)/_shared/not-found';
+import { SiteShell } from '@/app/(site)/_shared/shell';
 import { createPageMetadata } from '@/app/metadata';
-import { Button } from '@/ui/button';
+import { getCategories } from '@/domain/posts/queries';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Page not found',
   description: 'The page you are looking for could not be found.'
 });
 
-export default function NotFound() {
+async function getNotFoundCategories() {
+  try {
+    return await getCategories();
+  } catch {
+    return [];
+  }
+}
+
+export default async function NotFound() {
+  const categories = await getNotFoundCategories();
+
   return (
-    <PageLayout
-      className="min-h-[60vh]"
-      contentClassName="flex min-h-[60vh] flex-col items-center justify-center gap-10 text-center"
-    >
-      <div className="space-y-2">
-        <p className="text-9xl font-semibold">404</p>
-        <h1 className="text-2xl">Page not found</h1>
-      </div>
-      <Button size="lg" variant="solid" asChild>
-        <Link href="/">Back to homepage</Link>
-      </Button>
-    </PageLayout>
+    <SiteShell categories={categories}>
+      <NotFoundContent />
+    </SiteShell>
   );
 }

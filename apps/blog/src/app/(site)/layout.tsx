@@ -7,6 +7,5 @@ export default async function SiteLayout({
   children: React.ReactNode;
 }>) {
   const categories = await getCategories();
-
   return <SiteShell categories={categories}>{children}</SiteShell>;
 }
