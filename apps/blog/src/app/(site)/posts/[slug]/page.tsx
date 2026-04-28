@@ -15,10 +15,17 @@ export const dynamicParams = false;
 
 const getCachedPostDetails = cache(getPostDetails);
 
-function getLastUpdatedLabel(post: PostDetails) {
-  const dateLabel = formatDateLong(post.publishedAt);
-  const updatedLabel = formatDateLong(post.updatedAt);
-  return updatedLabel && updatedLabel !== dateLabel ? updatedLabel : null;
+function getPostDateLabels({
+  publishedAt,
+  updatedAt
+}: Pick<PostDetails, 'publishedAt' | 'updatedAt'>) {
+  const publishedLabel = formatDateLong(publishedAt);
+  const updatedLabel = formatDateLong(updatedAt);
+
+  return {
+    publishedLabel,
+    updatedLabel: updatedLabel && updatedLabel !== publishedLabel ? updatedLabel : null
+  };
 }
 
 export async function generateMetadata({ params }: SlugPageProps): Promise<Metadata> {
@@ -27,9 +34,11 @@ export async function generateMetadata({ params }: SlugPageProps): Promise<Metad
 
   if (!post) notFound();
 
+  const { title, excerpt } = post;
+
   return createPageMetadata({
-    title: post.title ?? 'Untitled',
-    description: post.excerpt,
+    title: title ?? 'Untitled',
+    description: excerpt,
     canonical: `/posts/${slug}`
   });
 }
@@ -44,29 +53,41 @@ export default async function PostPage({ params }: SlugPageProps) {
 
   if (!post) notFound();
 
-  const lastUpdatedLabel = getLastUpdatedLabel(post);
+  const {
+    title,
+    excerpt,
+    category,
+    readTime,
+    tags,
+    coverUrl,
+    coverAlt,
+    coverImageLqip,
+    bodyBlocks,
+    headingIds
+  } = post;
+  const { publishedLabel, updatedLabel } = getPostDateLabels(post);
 
   return (
     <PageLayout contentClassName="space-y-10 sm:space-y-14">
       <header className="space-y-6">
         <PostHeader
-          title={post.title}
-          excerpt={post.excerpt}
-          category={post.category}
-          date={formatDateLong(post.publishedAt)}
-          updated={lastUpdatedLabel}
-          readTime={post.readTime}
+          title={title}
+          excerpt={excerpt}
+          category={category}
+          date={publishedLabel}
+          updated={updatedLabel}
+          readTime={readTime}
         />
         <PostCoverImage
-          coverUrl={post.coverUrl}
-          coverAlt={post.coverAlt}
-          coverImageLqip={post.coverImageLqip}
+          coverUrl={coverUrl}
+          coverAlt={coverAlt}
+          coverImageLqip={coverImageLqip}
           className="sm:w-[calc(100%+3rem)] sm:-mx-6"
         />
-        <Tags tags={post.tags} />
+        <Tags tags={tags} />
       </header>
       <article className="space-y-6">
-        <PortableTextRenderer value={post.bodyBlocks} headingIds={post.headingIds} />
+        <PortableTextRenderer value={bodyBlocks} headingIds={headingIds} />
       </article>
     </PageLayout>
   );

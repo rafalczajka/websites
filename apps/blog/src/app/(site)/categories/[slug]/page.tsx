@@ -19,9 +19,11 @@ export async function generateMetadata({ params }: SlugPageProps): Promise<Metad
 
   if (!pageData) notFound();
 
+  const { title, description } = pageData;
+
   return createPageMetadata({
-    title: pageData.title,
-    description: pageData.description || `Articles in ${pageData.title}.`,
+    title,
+    description: description || `Articles in ${title}.`,
     canonical: `/categories/${slug}`
   });
 }
@@ -36,12 +38,14 @@ export default async function CategoryPage({ params }: SlugPageProps) {
 
   if (!pageData) notFound();
 
+  const { title, description, posts } = pageData;
+
   return (
     <PageLayout
       className="space-y-12"
-      aside={<PageAside title={pageData.title} description={pageData.description} />}
+      aside={<PageAside title={title} description={description} />}
     >
-      {!!pageData.posts.length && <PostCardList posts={pageData.posts} />}
+      {!!posts.length && <PostCardList posts={posts} />}
     </PageLayout>
   );
 }

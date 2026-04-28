@@ -19,8 +19,10 @@ export async function generateMetadata({ params }: SlugPageProps): Promise<Metad
 
   if (!pageData) notFound();
 
+  const { title } = pageData;
+
   return createPageMetadata({
-    title: pageData.title,
+    title,
     description: `Articles tagged with ${slug}.`,
     canonical: `/tags/${slug}`
   });
@@ -36,12 +38,14 @@ export default async function TagPage({ params }: SlugPageProps) {
 
   if (!pageData) notFound();
 
+  const { title, relatedTags, posts } = pageData;
+
   return (
     <PageLayout
       className="space-y-10 sm:space-y-16"
-      aside={<PageAside title={pageData.title} relatedTags={pageData.relatedTags} />}
+      aside={<PageAside title={title} relatedTags={relatedTags} />}
     >
-      {pageData.posts.length > 0 && <PostCardList posts={pageData.posts} />}
+      {posts.length > 0 && <PostCardList posts={posts} />}
     </PageLayout>
   );
 }
