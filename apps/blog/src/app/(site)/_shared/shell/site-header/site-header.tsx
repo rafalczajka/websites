@@ -5,14 +5,14 @@ import { SearchDialog } from '@/domain/search/components';
 import { useSearchDialog, useSearchIndex } from '@/domain/search/hooks';
 import { cn } from '@/utils/cn';
 
-import { DesktopHeader, MobileHeader } from './internal';
+import { DesktopHeader, MobileHeader } from './_parts';
 
 type SiteHeaderProps = {
   categories: PostCategory[];
   className?: string;
 };
 
-export function Header({ categories, className }: SiteHeaderProps) {
+export function SiteHeader({ categories, className }: SiteHeaderProps) {
   const { documents, indexJson, isLoading, error, load } = useSearchIndex();
   const { open, setOpen, openDialog, query, setQuery } = useSearchDialog({ onOpen: load });
 

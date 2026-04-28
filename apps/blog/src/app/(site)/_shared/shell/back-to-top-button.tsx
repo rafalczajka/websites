@@ -5,7 +5,7 @@ import { ArrowUp } from 'lucide-react';
 import { Button } from '@/ui/button';
 import { cn } from '@/utils/cn';
 
-import { useBackToTopVisibility } from './hooks';
+import { useBackToTopVisibility } from './_hooks/use-back-to-top-visibility';
 
 export function BackToTopButton() {
   const isVisible = useBackToTopVisibility();

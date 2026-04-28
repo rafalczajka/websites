@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
-import { PageContent, TaxonomyAside } from '@/app/(site)/_components';
+import { PageAside } from '@/app/(site)/_shared/aside';
+import { PageLayout } from '@/app/(site)/_shared/layout';
 import { PostCardList } from '@/domain/posts/components';
 import { getCategoryPageData, getCategorySlugs } from '@/domain/posts/queries';
 
@@ -39,11 +40,11 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   if (!pageData) notFound();
 
   return (
-    <PageContent
+    <PageLayout
       className="space-y-12"
-      aside={<TaxonomyAside title={pageData.title} description={pageData.description} />}
+      aside={<PageAside title={pageData.title} description={pageData.description} />}
     >
       {!!pageData.posts.length && <PostCardList posts={pageData.posts} />}
-    </PageContent>
+    </PageLayout>
   );
 }

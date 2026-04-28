@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import { PageContent } from '@/app/(site)/_components';
+import { PageLayout } from '@/app/(site)/_shared/layout';
 import { Button } from '@/ui/button';
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <PageContent
+    <PageLayout
       className="min-h-[60vh]"
       contentClassName="flex min-h-[60vh] flex-col items-center justify-center gap-10 text-center"
     >
@@ -22,6 +22,6 @@ export default function NotFound() {
       <Button size="lg" variant="solid" asChild>
         <Link href="/">Back to homepage</Link>
       </Button>
-    </PageContent>
+    </PageLayout>
   );
 }

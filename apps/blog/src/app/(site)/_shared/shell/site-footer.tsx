@@ -1,10 +1,10 @@
 ﻿import { cn } from '@/utils/cn';
 
-type FooterProps = {
+type SiteFooterProps = {
   className?: string;
 };
 
-export function Footer({ className }: FooterProps) {
+export function SiteFooter({ className }: SiteFooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
-import { PageContent } from '@/app/(site)/_components';
+import { PageLayout } from '@/app/(site)/_shared/layout';
 import { PortableTextRenderer } from '@/domain/content/portable-text';
 import { PostCoverImage, PostHeader, Tags } from '@/domain/posts/components';
 import { getPostDetails, getPostSlugs } from '@/domain/posts/queries';
@@ -59,7 +59,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const lastUpdatedLabel = updatedLabel && updatedLabel !== dateLabel ? updatedLabel : null;
 
   return (
-    <PageContent contentClassName="space-y-10 sm:space-y-14">
+    <PageLayout contentClassName="space-y-10 sm:space-y-14">
       <header className="space-y-6">
         <PostHeader
           title={title}
@@ -80,6 +80,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       <article className="space-y-6">
         <PortableTextRenderer value={bodyBlocks} headingIds={headingIds} />
       </article>
-    </PageContent>
+    </PageLayout>
   );
 }

@@ -1,6 +1,6 @@
 import { cn } from '@/utils/cn';
 
-type PageContentProps = {
+type PageLayoutProps = {
   children: React.ReactNode;
   aside?: React.ReactNode;
   className?: string;
@@ -8,13 +8,13 @@ type PageContentProps = {
   asideClassName?: string;
 };
 
-export function PageContent({
+export function PageLayout({
   children,
   aside,
   className,
   contentClassName,
   asideClassName
-}: PageContentProps) {
+}: PageLayoutProps) {
   const hasAside = !!aside;
 
   return (

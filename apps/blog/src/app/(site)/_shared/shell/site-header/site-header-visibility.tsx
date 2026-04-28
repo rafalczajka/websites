@@ -2,14 +2,14 @@
 
 import { cn } from '@/utils/cn';
 
-import { useHeaderVisibility } from './hooks/use-header-visibility';
+import { useHeaderVisibility } from './_hooks/use-header-visibility';
 
-type HeaderVisibilityProps = {
+type SiteHeaderVisibilityProps = {
   children: React.ReactNode;
   className?: string;
 };
 
-export function HeaderVisibility({ children, className }: HeaderVisibilityProps) {
+export function SiteHeaderVisibility({ children, className }: SiteHeaderVisibilityProps) {
   const isVisible = useHeaderVisibility();
 
   return (

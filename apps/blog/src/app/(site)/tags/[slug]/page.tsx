@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
-import { PageContent, TaxonomyAside } from '@/app/(site)/_components';
+import { PageAside } from '@/app/(site)/_shared/aside';
+import { PageLayout } from '@/app/(site)/_shared/layout';
 import { PostCardList } from '@/domain/posts/components';
 import { getTagPageData, getTagSlugs } from '@/domain/posts/queries';
 
@@ -38,11 +39,11 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
   if (!pageData) notFound();
 
   return (
-    <PageContent
+    <PageLayout
       className="space-y-10 sm:space-y-16"
-      aside={<TaxonomyAside title={pageData.title} relatedTags={pageData.relatedTags} />}
+      aside={<PageAside title={pageData.title} relatedTags={pageData.relatedTags} />}
     >
       {pageData.posts.length > 0 && <PostCardList posts={pageData.posts} />}
-    </PageContent>
+    </PageLayout>
   );
 }
