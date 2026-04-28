@@ -45,7 +45,7 @@ export default async function CategoryPage({ params }: SlugPageProps) {
       className="space-y-12"
       aside={<PageAside title={title} description={description} />}
     >
-      {!!posts.length && <PostCardList posts={posts} />}
+      {posts.length > 0 ? <PostCardList posts={posts} /> : null}
     </PageLayout>
   );
 }

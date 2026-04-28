@@ -17,6 +17,12 @@ type PostMetaProps = {
   className?: string;
 };
 
+type PostMetaDetail = {
+  key: string;
+  icon: LucideIcon;
+  label: string;
+};
+
 const resolveCategory = (category?: string | CategoryObject | null) => {
   if (!category) return null;
 
@@ -30,26 +36,39 @@ const resolveCategory = (category?: string | CategoryObject | null) => {
   return title ? { title, slug: slug || null } : null;
 };
 
-export const PostMeta = ({ category, date, updated, readTime, className }: PostMetaProps) => {
-  const categoryData = resolveCategory(category);
+function buildPostMetaDetails({ date, updated, readTime }: PostMetaProps) {
+  const details: PostMetaDetail[] = [];
 
-  const details = [
-    date && {
+  if (date) {
+    details.push({
       key: 'published',
       icon: CalendarDays,
       label: date
-    },
-    updated && {
+    });
+  }
+
+  if (updated) {
+    details.push({
       key: 'updated',
       icon: History,
       label: `Updated ${updated}`
-    },
-    readTime && {
+    });
+  }
+
+  if (readTime) {
+    details.push({
       key: 'read-time',
       icon: Clock3,
       label: `${readTime} min read`
-    }
-  ].filter(Boolean) as Array<{ key: string; icon: LucideIcon; label: string }>;
+    });
+  }
+
+  return details;
+}
+
+export const PostMeta = ({ category, date, updated, readTime, className }: PostMetaProps) => {
+  const categoryData = resolveCategory(category);
+  const details = buildPostMetaDetails({ date, updated, readTime });
 
   if (!categoryData && !details.length) return null;
 

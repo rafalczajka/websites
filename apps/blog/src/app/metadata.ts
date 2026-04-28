@@ -28,9 +28,11 @@ export function normalizeMetadataDescription(value?: string | null) {
 }
 
 export function createPageMetadata({ title, description, canonical }: PageMetadataInput): Metadata {
+  const normalizedDescription = normalizeMetadataDescription(description);
+
   return {
     ...(title ? { title } : {}),
-    ...(description ? { description: normalizeMetadataDescription(description) } : {}),
+    ...(normalizedDescription ? { description: normalizedDescription } : {}),
     ...(canonical ? { alternates: { canonical } } : {})
   };
 }
