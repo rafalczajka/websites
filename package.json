@@ -7,7 +7,7 @@
     "start": "pnpm --filter blog start",
     "lint": "turbo run lint",
     "lint:staged": "lint-staged",
-    "check-types": "turbo run check-types",
+    "typecheck": "turbo run typecheck",
     "format": "prettier --write . --ignore-unknown",
     "format:check": "prettier --check . --ignore-unknown",
     "postinstall": "git config core.hooksPath .githooks"

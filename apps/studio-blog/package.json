@@ -6,7 +6,7 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "lint": "eslint .",
-    "check-types": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "schema:extract": "sanity schema extract --path=./extract.json",
     "typegen": "sanity typegen generate"
   },
