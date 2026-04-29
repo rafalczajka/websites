@@ -50,7 +50,7 @@ jobs:
         run: pnpm lint --filter blog
 
       - name: Typecheck
-        run: pnpm check-types --filter blog
+        run: pnpm typecheck --filter blog
 
       - name: Generate search index
         run: pnpm --filter blog generate:search-index

@@ -42,7 +42,7 @@ jobs:
         run: pnpm lint --filter studio-blog
 
       - name: Typecheck
-        run: pnpm check-types --filter studio-blog
+        run: pnpm typecheck --filter studio-blog
 
       - name: Deploy Studio Blog to Vercel
         id: deployment
