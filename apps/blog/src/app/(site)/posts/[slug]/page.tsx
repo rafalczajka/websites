@@ -69,26 +69,28 @@ export default async function PostPage({ params }: SlugPageProps) {
   const { publishedLabel, updatedLabel } = getPostDateLabels(post);
 
   return (
-    <PageLayout contentClassName="space-y-10 sm:space-y-14">
-      <header className="space-y-6">
-        <PostHeader
-          title={title}
-          excerpt={excerpt}
-          category={category}
-          date={publishedLabel}
-          updated={updatedLabel}
-          readTime={readTime}
-        />
-        <PostCoverImage
-          coverUrl={coverUrl}
-          coverAlt={coverAlt}
-          coverImageLqip={coverImageLqip}
-          className="sm:w-[calc(100%+3rem)] sm:-mx-6"
-        />
-        <Tags tags={tags} />
-      </header>
-      <article className="space-y-6">
-        <PortableTextRenderer value={bodyBlocks} headingIds={headingIds} />
+    <PageLayout>
+      <article className="space-y-10 sm:space-y-14">
+        <header className="space-y-6">
+          <PostHeader
+            title={title}
+            excerpt={excerpt}
+            category={category}
+            date={publishedLabel}
+            updated={updatedLabel}
+            readTime={readTime}
+          />
+          <PostCoverImage
+            coverUrl={coverUrl}
+            coverAlt={coverAlt}
+            coverImageLqip={coverImageLqip}
+            className="sm:w-[calc(100%+3rem)] sm:-mx-6"
+          />
+          <Tags tags={tags} />
+        </header>
+        <div className="space-y-6">
+          <PortableTextRenderer value={bodyBlocks} headingIds={headingIds} />
+        </div>
       </article>
     </PageLayout>
   );
