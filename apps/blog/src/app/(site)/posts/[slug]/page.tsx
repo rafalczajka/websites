@@ -69,7 +69,7 @@ export default async function PostPage({ params }: SlugPageProps) {
   const { publishedLabel, updatedLabel } = getPostDateLabels(post);
 
   return (
-    <PageLayout>
+    <PageLayout contentClassName="sm:col-start-2 sm:col-span-10 lg:col-start-3 lg:col-span-8">
       <article className="space-y-10 sm:space-y-14">
         <header className="space-y-6">
           <PostHeader
