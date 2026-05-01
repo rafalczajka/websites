@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
 import { CodeBlockPreview } from '../../components/code-block-preview';
+import { codeLanguageOptions } from '../shared';
 
 export const codeBlock = defineType({
   name: 'codeBlock',
@@ -28,14 +29,7 @@ export const codeBlock = defineType({
       type: 'string',
       validation: (Rule) => Rule.required(),
       options: {
-        list: [
-          { title: 'C#', value: 'csharp' },
-          { title: 'TypeScript', value: 'typescript' },
-          { title: 'TSX', value: 'tsx' },
-          { title: 'Python', value: 'python' },
-          { title: 'YAML', value: 'yaml' },
-          { title: 'Plaintext', value: 'txt' }
-        ]
+        list: codeLanguageOptions
       }
     }),
     defineField({

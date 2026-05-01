@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
+import { defaultSlugOptions } from '../shared';
+
 export const category = defineType({
   name: 'category',
   title: 'Category',
@@ -15,10 +17,7 @@ export const category = defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96
-      },
+      options: defaultSlugOptions,
       validation: (Rule) => Rule.required()
     }),
     defineField({

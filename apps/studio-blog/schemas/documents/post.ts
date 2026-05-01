@@ -1,6 +1,11 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
-import { slugify } from '../../lib/slug';
+import {
+  defaultSlugOptions,
+  imageAltField,
+  portableTextStyles,
+  validateSlugCompatibleTags
+} from '../shared';
 
 export const post = defineType({
   name: 'post',
@@ -27,10 +32,7 @@ export const post = defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96
-      },
+      options: defaultSlugOptions,
       validation: (Rule) => Rule.required()
     }),
     defineField({
@@ -62,14 +64,7 @@ export const post = defineType({
         hotspot: true
       },
       description: 'Main image used on the post page and in social previews.',
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Alt text',
-          type: 'string',
-          description: 'Optional, but recommended for accessibility.'
-        })
-      ],
+      fields: [imageAltField],
       validation: (Rule) => Rule.required()
     }),
     defineField({
@@ -87,50 +82,26 @@ export const post = defineType({
       fieldset: 'metadata',
       of: [{ type: 'string' }],
       options: { layout: 'tags' },
-      validation: (Rule) =>
-        Rule.custom((tags) => {
-          if (!tags) return true;
-
-          if (!Array.isArray(tags)) return 'Tags must be an array.';
-
-          for (const tag of tags) {
-            if (typeof tag !== 'string') return 'Tags must be strings.';
-
-            if (slugify(tag) !== tag) return `Tag "${tag}" is not slug compatible.`;
-          }
-
-          return true;
-        })
+      validation: (Rule) => Rule.custom(validateSlugCompatibleTags)
     }),
     defineField({
       name: 'body',
       title: 'Body',
       type: 'array',
       of: [
-        {
+        defineArrayMember({
           type: 'block',
-          styles: [
-            { title: 'Normal', value: 'normal' },
-            { title: 'H2', value: 'h2' },
-            { title: 'H3', value: 'h3' }
-          ]
-        },
-        { type: 'codeBlock' },
-        { type: 'mathBlock' },
-        {
+          styles: portableTextStyles
+        }),
+        defineArrayMember({ type: 'codeBlock' }),
+        defineArrayMember({ type: 'mathBlock' }),
+        defineArrayMember({
           type: 'image',
           options: {
             hotspot: true
           },
-          fields: [
-            defineField({
-              name: 'alt',
-              title: 'Alt text',
-              type: 'string',
-              description: 'Optional, but recommended for accessibility.'
-            })
-          ]
-        }
+          fields: [imageAltField]
+        })
       ],
       validation: (Rule) => Rule.required()
     })

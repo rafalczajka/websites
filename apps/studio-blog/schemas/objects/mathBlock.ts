@@ -16,8 +16,9 @@ export const mathBlock = defineType({
     },
     prepare({ latex, displayMode }) {
       return {
-        title: displayMode ? 'true' : 'false',
-        subtitle: latex
+        title: 'Math formula',
+        subtitle: latex,
+        description: displayMode ? 'block' : 'inline'
       };
     }
   },
