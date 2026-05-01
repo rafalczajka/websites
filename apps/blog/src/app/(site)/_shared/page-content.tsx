@@ -1,6 +1,6 @@
 import { cn } from '@/utils/cn';
 
-type PageLayoutProps = {
+type PageContentProps = {
   children: React.ReactNode;
   aside?: React.ReactNode;
   className?: string;
@@ -8,17 +8,17 @@ type PageLayoutProps = {
   asideClassName?: string;
 };
 
-export function PageLayout({
+export function PageContent({
   children,
   aside,
   className,
   contentClassName,
   asideClassName
-}: PageLayoutProps) {
+}: PageContentProps) {
   const hasAside = !!aside;
 
   return (
-    <main id="main-content" className={cn('w-full mt-10 sm:mt-16 md:mt-20', className)}>
+    <div className={cn('w-full mt-10 sm:mt-16 md:mt-20', className)}>
       <div
         className={cn(
           hasAside
@@ -28,7 +28,9 @@ export function PageLayout({
       >
         <div
           className={cn(
-            hasAside ? 'md:col-span-8' : 'sm:col-start-3 sm:col-span-8',
+            hasAside
+              ? 'md:col-span-8'
+              : 'sm:col-start-2 sm:col-span-10 md:col-start-3 md:col-span-8',
             contentClassName
           )}
         >
@@ -38,6 +40,6 @@ export function PageLayout({
           <aside className={cn('md:col-start-9 md:col-end-13', asideClassName)}>{aside}</aside>
         )}
       </div>
-    </main>
+    </div>
   );
 }

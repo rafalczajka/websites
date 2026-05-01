@@ -1,5 +1,6 @@
-import { SiteShell } from '@/app/(site)/_shared/shell';
 import { getCategories } from '@/domain/posts/queries';
+
+import { SiteShell } from './_shared/site-shell';
 
 export default async function SiteLayout({
   children

@@ -3,7 +3,6 @@
 import type { PostCategory } from '@/domain/posts/models';
 import { SearchDialog } from '@/domain/search/components';
 import { useSearchDialog, useSearchIndex } from '@/domain/search/hooks';
-import { cn } from '@/utils/cn';
 
 import { DesktopHeader, MobileHeader } from './_parts';
 
@@ -17,12 +16,7 @@ export function SiteHeader({ categories, className }: SiteHeaderProps) {
   const { open, setOpen, openDialog, query, setQuery } = useSearchDialog({ onOpen: load });
 
   return (
-    <header
-      className={cn(
-        'w-full supports-backdrop-filter:bg-background/90 supports-backdrop-filter:backdrop-blur',
-        className
-      )}
-    >
+    <div className={className}>
       <div className="block w-full sm:hidden">
         <MobileHeader categories={categories} onOpenSearch={openDialog} />
       </div>
@@ -39,6 +33,6 @@ export function SiteHeader({ categories, className }: SiteHeaderProps) {
         isLoading={isLoading}
         error={error}
       />
-    </header>
+    </div>
   );
 }

@@ -119,4 +119,8 @@ html body[data-scroll-locked] {
   :root[data-theme='light'] .theme-dark {
     display: none;
   }
+
+  .header-backdrop {
+    @apply supports-backdrop-filter:bg-background/90 supports-backdrop-filter:backdrop-blur;
+  }
 }

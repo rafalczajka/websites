@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 
-import { NotFoundContent } from '@/app/(site)/_shared/not-found';
-import { SiteShell } from '@/app/(site)/_shared/shell';
 import { createPageMetadata } from '@/app/metadata';
 import { getCategories } from '@/domain/posts/queries';
+
+import { NotFound as NotFoundContent } from './(site)/_shared/not-found';
+import { SiteShell } from './(site)/_shared/site-shell';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Page not found',

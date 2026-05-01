@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
-import { PageAside } from '@/app/(site)/_shared/aside';
-import { PageLayout } from '@/app/(site)/_shared/layout';
+import { PageAside } from '@/app/(site)/_shared/page-aside';
+import { PageContent } from '@/app/(site)/_shared/page-content';
 import type { SlugPageProps } from '@/app/(site)/_shared/routing';
 import { createPageMetadata } from '@/app/metadata';
 import { PostCardList } from '@/domain/posts/components';
@@ -41,11 +41,11 @@ export default async function TagPage({ params }: SlugPageProps) {
   const { title, relatedTags, posts } = pageData;
 
   return (
-    <PageLayout
+    <PageContent
       className="space-y-10 sm:space-y-16"
       aside={<PageAside title={title} relatedTags={relatedTags} />}
     >
       {posts.length > 0 && <PostCardList posts={posts} />}
-    </PageLayout>
+    </PageContent>
   );
 }

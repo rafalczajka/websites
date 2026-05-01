@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
-import { PageLayout } from '@/app/(site)/_shared/layout';
+import { PageContent } from '@/app/(site)/_shared/page-content';
 import type { SlugPageProps } from '@/app/(site)/_shared/routing';
 import { createPageMetadata } from '@/app/metadata';
 import { PortableTextRenderer } from '@/domain/content/portable-text';
@@ -69,7 +69,7 @@ export default async function PostPage({ params }: SlugPageProps) {
   const { publishedLabel, updatedLabel } = getPostDateLabels(post);
 
   return (
-    <PageLayout contentClassName="sm:col-start-2 sm:col-span-10 lg:col-start-3 lg:col-span-8">
+    <PageContent contentClassName="md:col-start-2 md:col-span-10 lg:col-start-3 lg:col-span-8">
       <article className="space-y-10 sm:space-y-14">
         <header className="space-y-6">
           <PostHeader
@@ -92,6 +92,6 @@ export default async function PostPage({ params }: SlugPageProps) {
           <PortableTextRenderer value={bodyBlocks} headingIds={headingIds} />
         </div>
       </article>
-    </PageLayout>
+    </PageContent>
   );
 }
