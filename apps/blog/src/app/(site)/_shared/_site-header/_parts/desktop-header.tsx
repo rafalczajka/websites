@@ -2,8 +2,10 @@ import type { PostCategory } from '@/domain/posts/models';
 import { cn } from '@/utils/cn';
 
 import { Brand } from './brand';
-import { DesktopHeaderActions } from './header-actions';
+import { DesktopHomeLink } from './home-link';
 import { DesktopNav } from './nav';
+import { SearchButton } from './search-button';
+import { ThemeToggle } from './theme-toggle';
 
 type DesktopHeaderProps = {
   categories: PostCategory[];
@@ -18,7 +20,11 @@ export function DesktopHeader({ categories, onOpenSearch, className }: DesktopHe
         <Brand />
         <DesktopNav categories={categories} />
       </div>
-      <DesktopHeaderActions onOpenSearch={onOpenSearch} />
+      <div className={cn('flex items-center gap-3', className)}>
+        <SearchButton onClick={onOpenSearch} />
+        <ThemeToggle />
+        <DesktopHomeLink />
+      </div>
     </div>
   );
 }

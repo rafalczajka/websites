@@ -6,6 +6,7 @@ type BrandProps = {
   className?: string;
 };
 
+// temporary
 export const Brand = ({ className }: BrandProps) => (
   <HeaderTextButton className={className} asChild>
     <Link href="/" aria-label="Blog home">

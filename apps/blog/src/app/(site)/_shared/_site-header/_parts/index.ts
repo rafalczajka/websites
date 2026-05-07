@@ -1,6 +1,5 @@
 export * from './brand';
 export * from './desktop-header';
-export * from './header-actions';
 export * from './header-button';
 export * from './home-link';
 export * from './mobile-header';
