@@ -1,7 +1,7 @@
 import {
+  type InferComponents,
   PortableText,
-  PortableTextComponentProps,
-  type PortableTextComponents
+  type PortableTextComponentProps
 } from '@portabletext/react';
 import { type PortableTextBlock, type PortableTextValue } from '@websites/sanity-blog/content';
 
@@ -20,7 +20,7 @@ import {
 } from './blocks';
 
 const buildHeadingProps = (
-  { children, value }: PortableTextComponentProps<object>,
+  { children, value }: Pick<PortableTextComponentProps<PortableTextBlock>, 'children' | 'value'>,
   headingIds?: Record<string, string>
 ) => ({
   children,
@@ -48,7 +48,7 @@ const buildPortableTextComponents = (headingIds?: Record<string, string>) =>
       number: (props) => <ListItem {...props} />
     },
     marks: {
-      code: InlineCode,
+      code: ({ children }) => <InlineCode>{children}</InlineCode>,
       link: Link
     },
     types: {
@@ -56,7 +56,7 @@ const buildPortableTextComponents = (headingIds?: Record<string, string>) =>
       mathBlock: MathBlock,
       codeBlock: CodeBlock
     }
-  }) satisfies PortableTextComponents;
+  }) satisfies InferComponents<PortableTextValue>;
 
 export const PortableTextRenderer = ({
   value,
