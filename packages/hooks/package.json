@@ -15,8 +15,8 @@
   "devDependencies": {
     "@websites/eslint-config": "workspace:*",
     "@websites/tsconfig": "workspace:*",
-    "@types/react": "19.2.15",
-    "eslint": "10.4.0",
+    "@types/react": "19.2.16",
+    "eslint": "10.4.1",
     "typescript": "6.0.3"
   }
 }
