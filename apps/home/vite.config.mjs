@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 
 const sharedConfig = {
   root: './src',
+  envDir: '..',
   base: './',
   css: {
     preprocessorOptions: {
