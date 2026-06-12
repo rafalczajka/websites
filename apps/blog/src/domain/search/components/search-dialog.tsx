@@ -14,7 +14,7 @@ import {
   CommandList
 } from '@/ui/command';
 
-import { SearchHelp } from './_parts/search-help';
+// import { SearchHelp } from './_parts/search-help';
 import { SearchResult } from './_parts/search-result';
 
 type SearchDialogProps = {
@@ -104,7 +104,7 @@ export function SearchDialog({
     >
       <CommandInput value={query} onValueChange={handleQueryChange} placeholder="Search posts..." />
       <CommandList>{renderCommandGroup()}</CommandList>
-      <SearchHelp />
+      {/* <SearchHelp /> */}
     </CommandDialog>
   );
 }
