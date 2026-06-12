@@ -16,7 +16,7 @@ type PageMetadataInput = {
 export const rootMetadata: Metadata = {
   metadataBase: new URL(siteMetadata.url),
   title: {
-    default: siteMetadata.title,
+    default: `${siteMetadata.title} | Rafał Czajka`,
     template: `%s | ${siteMetadata.title}`
   },
   description: siteMetadata.description
