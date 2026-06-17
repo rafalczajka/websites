@@ -38,12 +38,12 @@ export default async function CategoryPage({ params }: SlugPageProps) {
 
   if (!pageData) notFound();
 
-  const { title, description, posts } = pageData;
+  const { title, description, posts, tags } = pageData;
 
   return (
     <PageContent
       className="space-y-12"
-      aside={<PageAside title={title} description={description} />}
+      aside={<PageAside title={title} description={description} relatedTags={tags} />}
     >
       {posts.length > 0 ? <PostCardList posts={posts} /> : null}
     </PageContent>
