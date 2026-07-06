@@ -8,8 +8,8 @@
   },
   "devDependencies": {
     "@websites/eslint-config": "workspace:*",
-    "eslint": "10.5.0",
+    "eslint": "10.6.0",
     "sass": "1.101.0",
-    "vite": "8.0.16"
+    "vite": "8.1.3"
   }
 }
