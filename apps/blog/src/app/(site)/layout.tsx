@@ -1,6 +1,5 @@
 import { getCategories } from '@/domain/posts/queries';
-
-import { SiteShell } from './_shared/site-shell';
+import { SiteShell } from '@/layout/site-shell';
 
 export default async function SiteLayout({
   children

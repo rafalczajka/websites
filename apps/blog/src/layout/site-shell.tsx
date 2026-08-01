@@ -1,8 +1,8 @@
 import type { PostCategory } from '@/domain/posts/models';
 import { Layout } from '@/ui/layout';
 
-import { BackToTopButton, SkipToContentLink } from './_controls';
-import { SiteHeader, SiteHeaderVisibility } from './_site-header';
+import { BackToTopButton, SkipToContentLink } from './controls';
+import { SiteHeader, SiteHeaderVisibility } from './site-header';
 
 type SiteShellProps = {
   categories: PostCategory[];

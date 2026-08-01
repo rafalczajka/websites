@@ -1,10 +1,9 @@
 import Link from 'next/link';
 
+import { PageContent } from '@/layout/page-content';
 import { Button } from '@/ui/button';
 
-import { PageContent } from './page-content';
-
-export function NotFound() {
+export function NotFoundContent() {
   return (
     <PageContent
       className="min-h-[60vh]"

@@ -2,7 +2,7 @@ import { ArrowRightIcon, ArrowUpRightIcon } from 'lucide-react';
 
 import { cn } from '@/utils/cn';
 
-import { externalLinks } from '../../links';
+import { externalLinks } from '../links';
 import { HeaderOutlineButton } from './header-button';
 import { MobileNavLink } from './mobile-nav-link';
 

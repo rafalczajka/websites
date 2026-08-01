@@ -1,5 +1,5 @@
-import { NotFound } from './_shared/not-found';
+import { NotFoundContent } from '@/app/not-found-content';
 
 export default function SiteNotFound() {
-  return <NotFound />;
+  return <NotFoundContent />;
 }

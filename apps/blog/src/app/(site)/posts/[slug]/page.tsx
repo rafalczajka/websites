@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
-import { PageContent } from '@/app/(site)/_shared/page-content';
-import type { SlugPageProps } from '@/app/(site)/_shared/routing';
 import { createPageMetadata } from '@/app/metadata';
+import type { SlugPageProps } from '@/app/routing';
 import { PortableTextRenderer } from '@/domain/content/portable-text';
 import { PostCoverImage, PostHeader, Tags } from '@/domain/posts/components';
 import type { PostDetails } from '@/domain/posts/models';
 import { getPostDetails, getPostSlugs } from '@/domain/posts/queries';
+import { PageContent } from '@/layout/page-content';
 import { formatDateLong } from '@/utils/dates';
 
 export const dynamicParams = false;

@@ -3,8 +3,7 @@ import type { Metadata } from 'next';
 import { createPageMetadata } from '@/app/metadata';
 import { EmptyState, PostCardList } from '@/domain/posts/components';
 import { getPosts } from '@/domain/posts/queries';
-
-import { PageContent } from './_shared/page-content';
+import { PageContent } from '@/layout/page-content';
 
 export const metadata: Metadata = createPageMetadata({ canonical: '/' });
 

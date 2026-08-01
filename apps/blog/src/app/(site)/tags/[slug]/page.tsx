@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
-import { PageAside } from '@/app/(site)/_shared/page-aside';
-import { PageContent } from '@/app/(site)/_shared/page-content';
-import type { SlugPageProps } from '@/app/(site)/_shared/routing';
 import { createPageMetadata } from '@/app/metadata';
+import type { SlugPageProps } from '@/app/routing';
 import { PostCardList } from '@/domain/posts/components';
 import { getTagPageData, getTagSlugs } from '@/domain/posts/queries';
+import { PageAside } from '@/layout/page-aside';
+import { PageContent } from '@/layout/page-content';
 
 export const dynamicParams = false;
 
