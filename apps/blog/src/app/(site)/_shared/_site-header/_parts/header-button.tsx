@@ -10,7 +10,7 @@ export function HeaderIconButton({ className, ...props }: ButtonProps) {
     <Button
       variant="ghost"
       size="icon"
-      className={cn('size-10 cursor-pointer', className)}
+      className={cn('size-10 rounded-full cursor-pointer', className)}
       {...props}
     />
   );
