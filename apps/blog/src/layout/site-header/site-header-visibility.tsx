@@ -2,7 +2,7 @@
 
 import { cn } from '@/utils/cn';
 
-import { useHeaderVisibility } from '../hooks/use-header-visibility';
+import { useHeaderVisibility } from './use-header-visibility';
 
 type SiteHeaderVisibilityProps = {
   children: React.ReactNode;

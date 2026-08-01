@@ -4,7 +4,8 @@ import type { PostCategory } from '@/domain/posts/models';
 import { SearchDialog } from '@/domain/search/components';
 import { useSearchDialog, useSearchIndex } from '@/domain/search/hooks';
 
-import { DesktopHeader, MobileHeader } from './_parts';
+import { DesktopHeader } from './desktop-header';
+import { MobileHeader } from './mobile-header';
 
 type SiteHeaderProps = {
   categories: PostCategory[];

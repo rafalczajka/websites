@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
 import { createPageMetadata } from '@/app/metadata';
-import type { SlugPageProps } from '@/app/routing';
-import { PostCardList } from '@/domain/posts/components';
+import type { SlugPageProps } from '@/app/route-types';
+import { PostCardList, Tags } from '@/domain/posts/components';
 import { getCategoryPageData, getCategorySlugs } from '@/domain/posts/queries';
 import { PageAside } from '@/layout/page-aside';
 import { PageContent } from '@/layout/page-content';
@@ -43,7 +43,11 @@ export default async function CategoryPage({ params }: SlugPageProps) {
   return (
     <PageContent
       className="space-y-12"
-      aside={<PageAside title={title} description={description} relatedTags={tags} />}
+      aside={
+        <PageAside title={title} description={description}>
+          <Tags tags={tags} />
+        </PageAside>
+      }
     >
       {posts.length > 0 ? <PostCardList posts={posts} /> : null}
     </PageContent>

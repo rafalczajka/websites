@@ -2,8 +2,8 @@ import { ArrowRightIcon, ArrowUpRightIcon } from 'lucide-react';
 
 import { cn } from '@/utils/cn';
 
-import { externalLinks } from '../links';
 import { HeaderOutlineButton } from './header-button';
+import { externalLinks } from './links';
 import { MobileNavLink } from './mobile-nav-link';
 
 type HomeLinkProps = {

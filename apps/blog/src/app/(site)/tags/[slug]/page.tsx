@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
 import { createPageMetadata } from '@/app/metadata';
-import type { SlugPageProps } from '@/app/routing';
-import { PostCardList } from '@/domain/posts/components';
+import type { SlugPageProps } from '@/app/route-types';
+import { PostCardList, Tags } from '@/domain/posts/components';
 import { getTagPageData, getTagSlugs } from '@/domain/posts/queries';
 import { PageAside } from '@/layout/page-aside';
 import { PageContent } from '@/layout/page-content';
@@ -43,7 +43,11 @@ export default async function TagPage({ params }: SlugPageProps) {
   return (
     <PageContent
       className="space-y-10 sm:space-y-16"
-      aside={<PageAside title={title} relatedTags={relatedTags} />}
+      aside={
+        <PageAside title={title}>
+          <Tags tags={relatedTags} />
+        </PageAside>
+      }
     >
       {posts.length > 0 && <PostCardList posts={posts} />}
     </PageContent>

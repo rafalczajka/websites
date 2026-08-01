@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
 import { createPageMetadata } from '@/app/metadata';
-import type { SlugPageProps } from '@/app/routing';
+import type { SlugPageProps } from '@/app/route-types';
 import { PortableTextRenderer } from '@/domain/content/portable-text';
 import { PostCoverImage, PostHeader, Tags } from '@/domain/posts/components';
 import type { PostDetails } from '@/domain/posts/models';

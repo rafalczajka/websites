@@ -1,7 +1,7 @@
 import { cn } from '@/utils/cn';
 
 import type { PostDetails } from '../models';
-import { PostImageFrame } from './_parts';
+import { PostImageFrame } from './post-image-frame';
 
 type PostCoverImageProps = Pick<PostDetails, 'coverUrl' | 'coverAlt' | 'coverImageLqip'> & {
   className?: string;
