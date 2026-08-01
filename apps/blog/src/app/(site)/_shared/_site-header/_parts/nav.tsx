@@ -10,10 +10,10 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger
 } from '@/ui/navigation-menu';
-import { SheetClose } from '@/ui/sheet';
 import { cn } from '@/utils/cn';
 
-import { HeaderSheetButton, HeaderTextButton } from './header-button';
+import { HeaderTextButton } from './header-button';
+import { MobileNavLink } from './mobile-nav-link';
 
 type DesktopNavProps = {
   categories: PostCategory[];
@@ -59,17 +59,15 @@ export function MobileNav({ categories, className }: MobileNavProps) {
 
   return (
     <nav className={className} aria-label="Categories">
-      <ul className="space-y-2">
+      <ul className="divide-border divide-y">
         {categories.map((category) => (
           <li key={category.id}>
-            <SheetClose asChild>
-              <HeaderSheetButton asChild>
-                <Link href={`/categories/${category.slug}`}>
-                  {category.title}
-                  <ArrowRightIcon className="size-4" />
-                </Link>
-              </HeaderSheetButton>
-            </SheetClose>
+            <MobileNavLink>
+              <Link href={`/categories/${category.slug}`}>
+                <span>{category.title}</span>
+                <ArrowRightIcon className="text-muted-foreground size-4" />
+              </Link>
+            </MobileNavLink>
           </li>
         ))}
       </ul>

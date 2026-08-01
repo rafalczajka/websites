@@ -1,9 +1,10 @@
-import { ArrowRightIcon } from 'lucide-react';
+import { ArrowRightIcon, ArrowUpRightIcon } from 'lucide-react';
 
 import { cn } from '@/utils/cn';
 
 import { externalLinks } from '../../links';
-import { HeaderOutlineButton, HeaderSheetButton } from './header-button';
+import { HeaderOutlineButton } from './header-button';
+import { MobileNavLink } from './mobile-nav-link';
 
 type HomeLinkProps = {
   className?: string;
@@ -23,12 +24,14 @@ export function DesktopHomeLink({ className }: HomeLinkProps) {
 }
 
 export function MobileHomeLink({ className }: HomeLinkProps) {
+  const { url, label } = externalLinks.rootSite;
+
   return (
-    <HeaderSheetButton className={cn('w-full', className)} asChild>
-      <a href={externalLinks.rootSite.url}>
-        <span>{externalLinks.rootSite.label}</span>
-        <ArrowRightIcon className="size-4" />
+    <MobileNavLink className={className}>
+      <a href={url}>
+        <span>{label}</span>
+        <ArrowUpRightIcon className="text-muted-foreground size-4" />
       </a>
-    </HeaderSheetButton>
+    </MobileNavLink>
   );
 }

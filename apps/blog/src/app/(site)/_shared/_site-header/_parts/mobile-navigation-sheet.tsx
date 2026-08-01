@@ -3,7 +3,6 @@
 import { Menu, X } from 'lucide-react';
 
 import type { PostCategory } from '@/domain/posts/models';
-import { Separator } from '@/ui/separator';
 import {
   Sheet,
   SheetClose,
@@ -32,22 +31,28 @@ export function MobileNavigationSheet({ categories, className }: MobileNavigatio
           <Menu className="size-5" />
         </HeaderIconButton>
       </SheetTrigger>
-      <SheetContent side="right" className="w-full max-w-none border-l-0 p-4 sm:p-5">
-        <SheetHeader className="sr-only">
-          <SheetTitle>Navigation menu</SheetTitle>
-          <SheetDescription>Site navigation and search</SheetDescription>
-        </SheetHeader>
-        <SheetClose asChild>
-          <HeaderIconButton className="self-end" aria-label="Close menu">
-            <X className="size-5" />
-          </HeaderIconButton>
-        </SheetClose>
-        <div className="space-y-6">
-          <MobileNav categories={categories} className="mt-4" />
-          <Separator />
+      <SheetContent
+        side="right"
+        className="h-dvh w-dvw max-w-none overflow-hidden border-0 p-0 shadow-none sm:max-w-none"
+      >
+        <SheetHeader className="flex-row items-center justify-between border-b px-4 py-3">
+          <SheetTitle className="text-base">Menu</SheetTitle>
+          <SheetDescription className="sr-only">
+            Browse categories and visit the main website
+          </SheetDescription>
           <SheetClose asChild>
-            <MobileHomeLink />
+            <HeaderIconButton className="-mr-2" aria-label="Close menu">
+              <X className="size-5" />
+            </HeaderIconButton>
           </SheetClose>
+        </SheetHeader>
+        <div className="flex min-h-0 flex-1 flex-col px-4">
+          <div className="min-h-0 flex-1 overflow-y-auto py-4">
+            <MobileNav categories={categories} />
+          </div>
+          <div className="border-t">
+            <MobileHomeLink />
+          </div>
         </div>
       </SheetContent>
     </Sheet>
