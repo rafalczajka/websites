@@ -5,10 +5,14 @@ import { useMemo } from 'react';
 
 import type { TocItem } from '../models';
 
-export function useActiveToc(toc: TocItem[]) {
-  const ids = useMemo(() => toc.map((item) => item.id), [toc]);
+type UseActiveTocOptions = {
+  offset?: number;
+};
+
+export function useActiveToc(items: readonly TocItem[], { offset }: UseActiveTocOptions = {}) {
+  const ids = useMemo(() => items.map((item) => item.id), [items]);
   const { height } = useWindowSize();
-  const activeId = useScrollSpy(ids, { offset: height / 2 });
+  const activeId = useScrollSpy(ids, { offset: offset ?? height / 2 });
 
   return {
     ids,

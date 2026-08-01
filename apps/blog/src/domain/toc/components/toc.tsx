@@ -8,11 +8,12 @@ import { useActiveToc } from '../hooks';
 import type { TocItem } from '../models';
 
 type TocProps = {
-  toc: TocItem[];
+  items: readonly TocItem[];
+  activeOffset?: number;
 };
 
-export const Toc = ({ toc }: TocProps) => {
-  const { ids, activeId } = useActiveToc(toc);
+export const Toc = ({ items, activeOffset }: TocProps) => {
+  const { ids, activeId } = useActiveToc(items, { offset: activeOffset });
 
   if (!ids.length) return null;
 
@@ -22,7 +23,7 @@ export const Toc = ({ toc }: TocProps) => {
       <Separator className="opacity-60" />
       <nav aria-label="Table of contents">
         <ul className="space-y-1">
-          {toc.map(({ id, label, level }) => (
+          {items.map(({ id, label, level }) => (
             <li key={id}>
               <Button
                 asChild
@@ -33,7 +34,7 @@ export const Toc = ({ toc }: TocProps) => {
                   activeId === id && 'border-l-primary text-foreground'
                 )}
               >
-                <a href={`#${id}`} aria-current={activeId === id ? 'true' : undefined}>
+                <a href={`#${id}`} aria-current={activeId === id ? 'location' : undefined}>
                   {label}
                 </a>
               </Button>

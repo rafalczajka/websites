@@ -3,7 +3,11 @@ import {
   PortableText,
   type PortableTextComponentProps
 } from '@portabletext/react';
-import { type PortableTextBlock, type PortableTextValue } from '@websites/sanity-blog/content';
+import {
+  type HeadingIdMap,
+  type PortableTextBlock,
+  type PortableTextValue
+} from '@websites/sanity-blog/content';
 
 import { InlineCode } from '@/ui/inline-code';
 
@@ -21,14 +25,14 @@ import {
 
 const buildHeadingProps = (
   { children, value }: Pick<PortableTextComponentProps<PortableTextBlock>, 'children' | 'value'>,
-  headingIds?: Record<string, string>
+  headingIds?: HeadingIdMap
 ) => ({
   children,
   headingIds,
   value: value as PortableTextBlock
 });
 
-const buildPortableTextComponents = (headingIds?: Record<string, string>) =>
+const buildPortableTextComponents = (headingIds?: HeadingIdMap) =>
   ({
     block: {
       h1: (props) => <Heading {...buildHeadingProps(props, headingIds)} />,
@@ -63,5 +67,5 @@ export const PortableTextRenderer = ({
   headingIds
 }: {
   value: PortableTextValue;
-  headingIds?: Record<string, string>;
+  headingIds?: HeadingIdMap;
 }) => <PortableText value={value} components={buildPortableTextComponents(headingIds)} />;

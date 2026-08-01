@@ -2,7 +2,7 @@ import 'server-only';
 
 import { getPostBySlug } from '@websites/sanity-blog/api';
 import {
-  buildHeadingData,
+  buildHeadingIndex,
   estimateReadTime,
   type PortableTextValue
 } from '@websites/sanity-blog/content';
@@ -20,7 +20,7 @@ export async function getPostDetails(slug: string): Promise<PostDetails | null> 
   const { coverImage, body, ...rest } = post;
 
   const bodyBlocks = (body ?? []) as PortableTextValue;
-  const { toc, headingIds } = buildHeadingData(bodyBlocks);
+  const { headings, headingIds } = buildHeadingIndex(bodyBlocks);
   const readTime = estimateReadTime(bodyBlocks);
 
   const coverUrl = coverImage
@@ -34,6 +34,6 @@ export async function getPostDetails(slug: string): Promise<PostDetails | null> 
     readTime,
     bodyBlocks,
     headingIds,
-    toc
+    headings
   };
 }

@@ -1,5 +1,5 @@
 export type TocItem = {
-  id: string;
-  label: string;
-  level: number;
+  readonly id: string;
+  readonly label: string;
+  readonly level: 2 | 3;
 };

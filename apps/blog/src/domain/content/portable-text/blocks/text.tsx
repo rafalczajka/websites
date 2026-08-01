@@ -1,4 +1,8 @@
-import { getHeadingId, type PortableTextBlock } from '@websites/sanity-blog/content';
+import {
+  getHeadingId,
+  type HeadingIdMap,
+  type PortableTextBlock
+} from '@websites/sanity-blog/content';
 import React from 'react';
 
 import { cn } from '@/utils/cn';
@@ -9,7 +13,7 @@ type TextProps = {
 
 type HeadingProps = TextProps & {
   value: PortableTextBlock;
-  headingIds?: Record<string, string>;
+  headingIds?: HeadingIdMap;
 };
 
 const headingSizeMap = {

@@ -1,6 +1,8 @@
-import type { PortableTextValue } from '@websites/sanity-blog/content';
-
-import type { TocItem } from '@/domain/toc/models';
+import type {
+  ContentHeading,
+  HeadingIdMap,
+  PortableTextValue
+} from '@websites/sanity-blog/content';
 
 export type SlugParam = {
   slug: string;
@@ -27,8 +29,8 @@ export type PostDetails = {
   readTime: number;
   tags?: string[] | null;
   bodyBlocks: PortableTextValue;
-  headingIds: Record<string, string>;
-  toc: TocItem[];
+  headingIds: HeadingIdMap;
+  headings: ContentHeading[];
 };
 
 export type Post = {

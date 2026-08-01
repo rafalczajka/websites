@@ -3,11 +3,13 @@ import type { PostBySlugQueryResult } from './types';
 export type PortableTextValue = NonNullable<NonNullable<PostBySlugQueryResult>['body']>;
 export type PortableTextBlock = Extract<PortableTextValue[number], { _type: 'block' }>;
 
-export type TocItem = {
+export type ContentHeading = {
   id: string;
   label: string;
   level: 2 | 3;
 };
+
+export type HeadingIdMap = Record<string, string>;
 
 export const getBlockText = (value: PortableTextBlock) =>
   value.children
@@ -22,7 +24,7 @@ const slugify = (text: string) =>
     .trim()
     .replace(/\s+/g, '-');
 
-export const getHeadingId = (value: PortableTextBlock, headingIds?: Record<string, string>) => {
+export const getHeadingId = (value: PortableTextBlock, headingIds?: HeadingIdMap) => {
   if (!value._key) return undefined;
 
   if (headingIds?.[value._key]) return headingIds[value._key];
@@ -31,9 +33,9 @@ export const getHeadingId = (value: PortableTextBlock, headingIds?: Record<strin
   return text ? slugify(text) : undefined;
 };
 
-export const buildHeadingData = (blocks: PortableTextValue = []) => {
-  const toc: TocItem[] = [];
-  const headingIds: Record<string, string> = {};
+export const buildHeadingIndex = (blocks: PortableTextValue = []) => {
+  const headings: ContentHeading[] = [];
+  const headingIds: HeadingIdMap = {};
   const counts: Record<string, number> = {};
 
   blocks.forEach((block) => {
@@ -48,10 +50,10 @@ export const buildHeadingData = (blocks: PortableTextValue = []) => {
     const id = counts[base] > 1 ? `${base}-${counts[base]}` : base;
 
     headingIds[block._key] = id;
-    toc.push({ id, label: text, level: block.style === 'h2' ? 2 : 3 });
+    headings.push({ id, label: text, level: block.style === 'h2' ? 2 : 3 });
   });
 
-  return { toc, headingIds };
+  return { headings, headingIds };
 };
 
 export const estimateReadTime = (blocks: PortableTextValue = []) => {
