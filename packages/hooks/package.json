@@ -10,13 +10,13 @@
     ".": "./src/index.ts"
   },
   "peerDependencies": {
-    "react": "19.2.4"
+    "react": "^19.2.0"
   },
   "devDependencies": {
     "@websites/eslint-config": "workspace:*",
     "@websites/tsconfig": "workspace:*",
     "@types/react": "19.2.18",
-    "eslint": "10.8.0",
-    "typescript": "7.0.2"
+    "eslint": "9.39.5",
+    "typescript": "6.0.3"
   }
 }
