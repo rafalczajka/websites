@@ -15,6 +15,21 @@ updates:
     schedule:
       interval: weekly
     groups:
+      linting-toolchain:
+        patterns:
+          - typescript
+          - typescript-eslint
+          - eslint
+          - eslint-*
+          - '@eslint/*'
+          - '@next/eslint-plugin-next'
       js-dependencies:
         patterns:
           - '*'
+        exclude-patterns:
+          - typescript
+          - typescript-eslint
+          - eslint
+          - eslint-*
+          - '@eslint/*'
+          - '@next/eslint-plugin-next'
