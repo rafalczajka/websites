@@ -11,19 +11,19 @@
     "typegen": "sanity typegen generate"
   },
   "dependencies": {
-    "@sanity/vision": "6.12.0",
+    "@sanity/vision": "6.13.2",
     "dotenv": "17.4.2",
-    "katex": "0.18.5",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "sanity": "6.12.0",
+    "katex": "0.18.7",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "sanity": "6.13.2",
     "styled-components": "6.5.3"
   },
   "devDependencies": {
     "@websites/eslint-config": "workspace:*",
     "@websites/tsconfig": "workspace:*",
-    "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.7",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "eslint": "9.39.5",
     "typescript": "6.0.3"
   }
