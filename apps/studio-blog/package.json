@@ -24,7 +24,7 @@
     "@websites/tsconfig": "workspace:*",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "eslint": "9.39.5",
-    "typescript": "6.0.3"
+    "eslint": "10.10.0",
+    "typescript": "7.0.2"
   }
 }
