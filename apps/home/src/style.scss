@@ -32,7 +32,9 @@
   --ring-50: oklch(0.64 0.08 252 / 0.5);
   --border: oklch(0.3 0.005 252);
   --transition-duration: 0.2s;
-  --container-width: 620px;
+  --container-width: 1200px;
+  --content-width: 600px;
+  --content-offset-y: clamp(1rem, 6vh, 4rem);
   --section-gap: clamp(1.25rem, 3vw, 1.75rem);
   --intro-gap: clamp(0.5rem, 1.5vw, 0.85rem);
 }
@@ -80,26 +82,38 @@ h3 {
   min-height: 100vh;
   min-height: 100dvh;
   padding: clamp(20px, 6vw, 56px);
-
-  &::before {
-    content: '';
-    position: fixed;
-    z-index: 0;
-    inset: clamp(16px, 3vw, 40px);
-    background: url('./assets/logo.svg') center / contain no-repeat;
-    opacity: 0.01;
-    pointer-events: none;
-  }
 }
 
 .container {
   position: relative;
-  z-index: 1;
-  display: grid;
-  gap: var(--section-gap);
   width: min(100%, var(--container-width));
   max-width: var(--container-width);
   margin: 0 auto;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 0;
+    width: min(100%, calc(var(--content-width) * 1.25));
+    max-height: 100vh;
+    aspect-ratio: 1;
+    background: url('./assets/logo.svg') center / contain no-repeat;
+    opacity: 0.025;
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--section-gap);
+  width: min(100%, var(--content-width));
+  max-width: var(--content-width);
+  transform: translateY(var(--content-offset-y));
 }
 
 .intro {
@@ -109,7 +123,7 @@ h3 {
 
 .title {
   font-family: 'DM Serif Display', 'Georgia', 'Times New Roman', serif;
-  font-size: clamp(2.75rem, 8vw, 4rem);
+  font-size: clamp(2.75rem, 9vw, 4rem);
   line-height: 1;
 }
 
@@ -221,6 +235,12 @@ h3 {
 
   &:hover::before {
     width: 100%;
+  }
+}
+
+@media (max-width: 850px), (max-height: 700px) {
+  :root {
+    --content-offset-y: 1rem;
   }
 }
 
