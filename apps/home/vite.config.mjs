@@ -1,3 +1,4 @@
+import autoprefixer from 'autoprefixer';
 import { defineConfig } from 'vite';
 
 const sharedConfig = {
@@ -5,6 +6,9 @@ const sharedConfig = {
   envDir: '..',
   base: './',
   css: {
+    postcss: {
+      plugins: [autoprefixer()]
+    },
     preprocessorOptions: {
       scss: { api: 'modern' }
     }
