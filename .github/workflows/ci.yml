@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SANITY_PROJECT_ID: ${{ secrets.STUDIO_BLOG_PROJECT_ID }}
-      SANITY_DATASET: ${{ secrets.STUDIO_DATASET }}
+      SANITY_STUDIO_PROJECT_ID: ${{ secrets.STUDIO_BLOG_PROJECT_ID }}
+      SANITY_STUDIO_DATASET: ${{ secrets.STUDIO_DATASET }}
 
     strategy:
       fail-fast: false
