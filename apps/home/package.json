@@ -10,9 +10,9 @@
     "@websites/eslint-config": "workspace:*",
     "autoprefixer": "10.6.1",
     "eslint": "9.39.5",
-    "postcss": "8.5.28",
+    "postcss": "8.5.29",
     "sass": "1.105.1",
-    "vite": "8.3.2"
+    "vite": "8.3.4"
   },
   "browserslist": [
     "defaults"
