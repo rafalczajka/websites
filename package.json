@@ -10,7 +10,8 @@
     "typecheck": "turbo run typecheck",
     "format": "prettier --write . --ignore-unknown",
     "format:check": "prettier --check . --ignore-unknown",
-    "postinstall": "git config core.hooksPath .githooks"
+    "postinstall": "git config core.hooksPath .githooks",
+    "lockfile:fix": "pnpm install --lockfile-only --fix-lockfile"
   },
   "devDependencies": {
     "@commitlint/cli": "21.2.4",
