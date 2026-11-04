@@ -3,7 +3,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { buildSearchIndex, type PostSearchDocument } from '@websites/search-blog';
-import dotenv from 'dotenv';
 
 import { formatDateLong } from '@/utils/dates';
 
@@ -15,9 +14,6 @@ const publicDir = path.join(projectDir, 'public');
 const outputPath = path.join(publicDir, 'search-index.json');
 
 const run = async () => {
-  dotenv.config({ path: path.join(projectDir, '.env') });
-  dotenv.config({ path: path.join(projectDir, '.env.local'), override: true });
-
   const { getPosts } = await import('@websites/sanity-blog/api');
   const { urlForImage } = await import('@websites/sanity-blog/image');
 
