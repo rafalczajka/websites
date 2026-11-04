@@ -17,12 +17,12 @@
   "dependencies": {
     "@sanity/client": "8.14.1",
     "@sanity/image-url": "2.1.1",
-    "groq": "6.21.0"
+    "groq": "6.22.0"
   },
   "devDependencies": {
+    "@types/node": "26.6.6",
     "@websites/eslint-config": "workspace:*",
     "@websites/tsconfig": "workspace:*",
-    "@types/node": "26.6.6",
     "eslint": "9.39.5",
     "typescript": "6.0.3"
   }
