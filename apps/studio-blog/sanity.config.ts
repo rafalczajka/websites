@@ -1,6 +1,5 @@
 import 'katex/dist/katex.min.css';
 
-import { visionTool } from '@sanity/vision';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 
@@ -14,7 +13,7 @@ export default defineConfig({
   title: 'Blog',
   projectId,
   dataset,
-  plugins: [structureTool(), visionTool()],
+  plugins: [structureTool()],
   schema: {
     types: schemaTypes
   }
