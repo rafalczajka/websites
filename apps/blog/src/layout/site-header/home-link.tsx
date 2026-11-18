@@ -1,7 +1,5 @@
 import { ArrowRightIcon, ArrowUpRightIcon } from 'lucide-react';
 
-import { cn } from '@/utils/cn';
-
 import { HeaderOutlineButton } from './header-button';
 import { externalLinks } from './links';
 import { MobileNavLink } from './mobile-nav-link';
@@ -14,7 +12,7 @@ export function DesktopHomeLink({ className }: HomeLinkProps) {
   const { url, label } = externalLinks.rootSite;
 
   return (
-    <HeaderOutlineButton className={cn('rounded-full', className)} asChild>
+    <HeaderOutlineButton className={className} asChild>
       <a href={url}>
         <span>{label}</span>
         <ArrowRightIcon className="size-4" />
