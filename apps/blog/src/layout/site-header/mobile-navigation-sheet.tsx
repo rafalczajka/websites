@@ -35,13 +35,13 @@ export function MobileNavigationSheet({ categories, className }: MobileNavigatio
         side="right"
         className="h-dvh w-dvw max-w-none overflow-hidden border-0 p-0 shadow-none sm:max-w-none"
       >
-        <SheetHeader className="flex-row items-center justify-between border-b px-4 py-3">
+        <SheetHeader className="flex-row items-center justify-between border-b py-4 pr-4 pl-6">
           <SheetTitle className="text-base">Menu</SheetTitle>
           <SheetDescription className="sr-only">
             Browse categories and visit the main website
           </SheetDescription>
           <SheetClose asChild>
-            <HeaderIconButton className="-mr-2" aria-label="Close menu">
+            <HeaderIconButton aria-label="Close menu">
               <X className="size-5" />
             </HeaderIconButton>
           </SheetClose>
