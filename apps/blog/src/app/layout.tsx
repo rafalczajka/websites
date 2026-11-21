@@ -40,7 +40,7 @@ export default async function RootLayout({
         className={cn(
           geistSans.variable,
           geistMono.variable,
-          'min-h-screen bg-background text-foreground antialiased'
+          'min-h-screen bg-background font-sans text-foreground antialiased'
         )}
       >
         {children}
