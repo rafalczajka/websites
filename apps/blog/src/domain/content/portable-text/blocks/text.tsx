@@ -18,11 +18,11 @@ type HeadingProps = TextProps & {
 
 const headingSizeMap = {
   h1: 'text-4xl sm:text-5xl',
-  h2: 'text-3xl sm:text-4xl',
-  h3: 'text-2xl sm:text-3xl',
-  h4: 'text-xl sm:text-2xl',
-  h5: 'text-lg sm:text-xl',
-  h6: 'text-md sm:text-lg'
+  h2: 'text-2xl sm:text-3xl',
+  h3: 'text-xl sm:text-2xl',
+  h4: 'text-lg sm:text-xl',
+  h5: 'text-base sm:text-lg',
+  h6: 'text-sm sm:text-base'
 } as const;
 
 type HeadingTag = keyof typeof headingSizeMap;
