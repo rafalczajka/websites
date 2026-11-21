@@ -33,7 +33,7 @@ export function MobileNavigationSheet({ categories, className }: MobileNavigatio
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="h-dvh w-dvw max-w-none overflow-hidden border-0 p-0 shadow-none sm:max-w-none"
+        className="h-dvh w-dvw max-w-none gap-0 overflow-hidden border-0 p-0 shadow-none sm:max-w-none"
       >
         <SheetHeader className="flex-row items-center justify-between border-b py-4 pr-4 pl-6">
           <SheetTitle className="text-base">Menu</SheetTitle>

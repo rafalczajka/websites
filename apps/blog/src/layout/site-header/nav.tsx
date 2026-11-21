@@ -59,7 +59,7 @@ export function MobileNav({ categories, className }: MobileNavProps) {
 
   return (
     <nav className={className} aria-label="Categories">
-      <ul className="divide-border divide-y">
+      <ul>
         {categories.map((category) => (
           <li key={category.id}>
             <MobileNavLink>
