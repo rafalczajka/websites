@@ -44,5 +44,5 @@ export function Heading({ value, headingIds, children }: HeadingProps) {
 }
 
 export const Text = ({ children }: TextProps) => (
-  <p className="leading-loose md:text-lg [&>strong]:text-foreground">{children}</p>
+  <p className="text-base leading-loose md:text-lg">{children}</p>
 );

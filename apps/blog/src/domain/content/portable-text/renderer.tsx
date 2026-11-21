@@ -52,6 +52,9 @@ const buildPortableTextComponents = (headingIds?: HeadingIdMap) =>
       number: (props) => <ListItem {...props} />
     },
     marks: {
+      strong: ({ children }) => (
+        <strong className="text-foreground in-[a]:text-inherit">{children}</strong>
+      ),
       code: ({ children }) => <InlineCode>{children}</InlineCode>,
       link: Link
     },

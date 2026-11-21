@@ -9,5 +9,5 @@ export const NumberList = ({ children }: Props) => (
 );
 
 export const ListItem = ({ children }: Props) => (
-  <li className="leading-7 text-muted-foreground">{children}</li>
+  <li className="text-base leading-loose text-muted-foreground md:text-lg">{children}</li>
 );
