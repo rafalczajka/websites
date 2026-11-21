@@ -50,7 +50,7 @@ export function MobileNavigationSheet({ categories, className }: MobileNavigatio
           <div className="min-h-0 flex-1 overflow-y-auto py-4">
             <MobileNav categories={categories} />
           </div>
-          <div className="border-t">
+          <div className="border-t pb-[max(1rem,env(safe-area-inset-bottom,0px))]">
             <MobileHomeLink />
           </div>
         </div>
