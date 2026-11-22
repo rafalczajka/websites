@@ -38,14 +38,14 @@ export default async function TagPage({ params }: SlugPageProps) {
 
   if (!pageData) notFound();
 
-  const { title, relatedTags, posts } = pageData;
+  const { title, otherTags, posts } = pageData;
 
   return (
     <PageContent
       className="space-y-10 sm:space-y-16"
       aside={
         <PageAside title={title}>
-          <Tags tags={relatedTags} />
+          <Tags tags={otherTags} />
         </PageAside>
       }
     >

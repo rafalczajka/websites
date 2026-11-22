@@ -6,7 +6,7 @@ import { getTagSlugs } from './get-tag-slugs';
 type TagPageData = {
   title: string;
   posts: Awaited<ReturnType<typeof getPosts>>;
-  relatedTags: string[];
+  otherTags: string[];
 };
 
 export async function getTagPageData(slug: string): Promise<TagPageData | null> {
@@ -15,14 +15,14 @@ export async function getTagPageData(slug: string): Promise<TagPageData | null> 
   if (!posts.length) return null;
 
   const currentTagSlug = slug.toLowerCase();
-  const relatedTags = tagParams
-    .map((param) => param.slug)
+  const otherTags = tagParams
+    .map(({ slug: tag }) => tag)
     .filter((tag) => tag.toLowerCase() !== currentTagSlug)
     .sort((a, b) => a.localeCompare(b));
 
   return {
     title: `#${slug}`,
     posts,
-    relatedTags
+    otherTags
   };
 }
