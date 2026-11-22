@@ -263,6 +263,11 @@ h3 {
   .identity {
     letter-spacing: 0.1em;
   }
+
+  .button {
+    min-height: 2.75rem;
+    font-size: 0.875rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
