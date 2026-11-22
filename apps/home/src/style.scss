@@ -270,6 +270,31 @@ h3 {
   }
 }
 
+@media (width > 640px) and (prefers-reduced-motion: no-preference) {
+  .container::before {
+    --entrance-offset: 16px;
+    animation: enter-from-right 550ms ease-out;
+  }
+
+  .links > li {
+    --entrance-offset: 8px;
+    animation: enter-from-right 280ms ease-out backwards;
+    animation-delay: min(240ms, calc((sibling-index() - 1) * 60ms));
+
+    &:focus-within {
+      animation-delay: 0s;
+      animation-duration: 0s;
+    }
+  }
+}
+
+@keyframes enter-from-right {
+  from {
+    opacity: 0;
+    translate: var(--entrance-offset);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root {
     --transition-duration: 0s;
