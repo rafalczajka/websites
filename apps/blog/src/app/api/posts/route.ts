@@ -11,19 +11,28 @@ type PostsResponse = {
   top: number | null;
 };
 
-function parseTop(value: string | null) {
-  if (!value) return null;
+export function parseTop(value: string | null): number | null | undefined {
+  if (value === null) {
+    return null;
+  }
 
-  const parsed = Number.parseInt(value, 10);
+  const isDecimalInteger = /^\d+$/.test(value);
 
-  if (!Number.isInteger(parsed) || parsed <= 0) return null;
+  if (!isDecimalInteger) {
+    return undefined;
+  }
 
-  return parsed;
+  const parsed = Number(value);
+  return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : undefined;
 }
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const top = parseTop(searchParams.get('top'));
+
+  if (top === undefined) {
+    return NextResponse.json({ error: 'top must be a positive safe integer.' }, { status: 400 });
+  }
 
   const items = await getPosts();
 
