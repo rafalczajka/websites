@@ -272,13 +272,13 @@ h3 {
 
 @media (width > 640px) and (prefers-reduced-motion: no-preference) {
   .container::before {
-    --entrance-offset: 16px;
-    animation: enter-from-right 550ms ease-out;
+    --entrance-offset: -16px;
+    animation: fade-slide-in 550ms ease-out;
   }
 
   .links > li {
     --entrance-offset: 8px;
-    animation: enter-from-right 280ms ease-out backwards;
+    animation: fade-slide-in 280ms ease-out backwards;
     animation-delay: min(240ms, calc((sibling-index() - 1) * 60ms));
 
     &:focus-within {
@@ -288,7 +288,7 @@ h3 {
   }
 }
 
-@keyframes enter-from-right {
+@keyframes fade-slide-in {
   from {
     opacity: 0;
     translate: var(--entrance-offset);
