@@ -94,6 +94,7 @@ export function SearchDialog({
       open={open}
       onOpenChange={handleOpenChange}
       title="Search posts"
+      className="top-[min(20dvh,10rem)] translate-y-0"
       showCloseButton={false}
       commandProps={{
         shouldFilter: false,
@@ -102,7 +103,9 @@ export function SearchDialog({
       }}
     >
       <CommandInput value={query} onValueChange={handleQueryChange} placeholder="Search posts..." />
-      <CommandList>{renderCommandGroup()}</CommandList>
+      <CommandList className="max-h-[min(18.75rem,calc(80dvh-4rem))]">
+        {renderCommandGroup()}
+      </CommandList>
     </CommandDialog>
   );
 }
